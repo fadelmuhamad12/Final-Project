@@ -1,5 +1,6 @@
 import React from "react";
 import Banner from "../components/Banner";
+import Categories from "../components/Categories";
 import Higlight from "../components/Higlight";
 import Navigationbar from "../components/NavigationBar";
 import Promo from "../components/Promo";
@@ -14,6 +15,7 @@ const Home = () => {
      <div>
        <Promo />
        <Banner/>
+       <Categories />
      </div>
      </>
  
