@@ -1,0 +1,40 @@
+.FullBg {
+  background-image: url(./assets/background2.jpg);
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+  height: 50rem;
+
+}
+
+/* HOME */
+.Main-higlight h1 {
+  color: white;
+  margin-left: 7rem;
+  margin-top: 8rem;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.Main-higlight button {
+  color: white;
+  background-color: red;
+  border-radius: 25px;
+  border: none;
+  padding: 20px;
+  font-weight: bold;
+  margin: 3rem 0 0 7rem ;
+}
+
+.Main-higlight h4 {
+  color: white;
+  margin-left: 7rem;
+  font-weight: bold;
+}
+/* NAVBAR */
+a.nav-link {
+  color: white;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+}
