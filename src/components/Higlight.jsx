@@ -8,6 +8,7 @@ const Higlight = () => {
       Out There,Go <br/>Explore</h1>
       <h4 className='text-white'>Never Stop Exploring The World</h4>
       <button>Book Now</button>
+ 
     </div>
   )
 }
