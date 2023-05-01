@@ -1,3 +1,4 @@
+
 import React from "react";
 import Banner from "../components/Banner";
 import Categories from "../components/Categories";
@@ -7,6 +8,7 @@ import Promo from "../components/Promo";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Activities from "../components/Activities";
+
 
 
 
@@ -20,8 +22,8 @@ const Home = () => {
      
      <div >
        <Promo />
-       <Banner/>
        <Categories />
+       <Banner/>
        <Activities />
      </div>
      </>
