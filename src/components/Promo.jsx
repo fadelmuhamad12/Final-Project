@@ -7,17 +7,17 @@ const Promo = () => {
   const [promos, setPromos] = useState([]);
   
   const fetchPromos = async () => {
-    try {
-      const promos = await axiosInstance.get("/promos", {
-        headers: {
-          apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-        },
-      });
-      setPromos(promos.data.data);
-      console.log(promos.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const promos = await axiosInstance.get("/promos", {
+    //     headers: {
+    //       apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+    //     },
+    //   });
+    //   setPromos(promos.data.data);
+    //   console.log(promos.data.data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   useEffect(() => {
     fetchPromos();

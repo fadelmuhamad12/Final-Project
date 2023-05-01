@@ -8,19 +8,19 @@ const Categories = () => {
     const [categories, setCategoies] = useState ([])
 
     const fetchCategories = async () => {
-        try {
-              const categories = await axiosInstance.get('/categories', {
-            headers: {
-                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c'
-            }
-        })
-        console.log(categories.data.data);
-        setCategoies(categories.data.data)
+        // try {
+        //       const categories = await axiosInstance.get('/categories', {
+        //     headers: {
+        //         apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c'
+        //     }
+        // })
+        // console.log(categories.data.data);
+        // setCategoies(categories.data.data)
 
-        }catch(error){
-            console.log(error);
+        // }catch(error){
+        //     console.log(error);
 
-        }
+        // }
       
     }
     

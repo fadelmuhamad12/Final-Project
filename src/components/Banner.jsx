@@ -18,17 +18,17 @@ const Banner = () => {
   const [banners, setBanners] = useState([]);
 
   const fetchBanner = async () => {
-    try {
-      const banners = await axiosInstance.get("/banners", {
-        headers: {
-          apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-        },
-      });
-      console.log(banners.data.data);
-      setBanners(banners.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const banners = await axiosInstance.get("/banners", {
+    //     headers: {
+    //       apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+    //     },
+    //   });
+    //   console.log(banners.data.data);
+    //   setBanners(banners.data.data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   useEffect(() => {
