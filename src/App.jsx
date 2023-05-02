@@ -6,6 +6,7 @@ import Banner from "./components/Banner";
 import Categories from "./components/Categories";
 import Higlight from "./components/Higlight";
 import Promo from "./components/Promo";
+import Register from "./components/Register";
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
         <Route exact path='/Categories' Component={Categories}></Route>
         <Route exact path='/Higlight' Component={Higlight}></Route>
         <Route exact path='/Promo' Component={Promo}></Route>
+        <Route exact path='/Register' Component={Register}></Route>
+
 
       </Routes>
     </Router>

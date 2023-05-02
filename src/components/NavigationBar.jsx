@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Container, Nav, Form, Modal, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Nav,
+  Form,
+  Modal,
+  Button,
+  Image,
+} from "react-bootstrap";
 import axiosInstance from "../api/axios";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -7,41 +15,92 @@ import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   const [show, setShow] = useState(false);
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [showProfile, setShowProfile] = useState(false);
+
+  const isLogin = JSON.parse(localStorage.getItem("datas"));
+
   // Modal Login
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // Modal Profile
+  const handleProfileShow = () => {
+    setShowProfile(true);
+  };
+  const handleProfileClose = () => {
+    setShowProfile(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: "",
+  //     name: "",
+  //     password: "",
+  //     passwordRepeat: "",
+  //     role: "",
+  //     profilePictureUrl: "",
+  //     phoneNumber: "",
+  //   },
+  //   validationSchema: yup.object().shape({
+  //     email: yup.string().required().email(),
+  //     password: yup.string().required(),
+  //     passwordRepeat: yup.string().required(),
+  //     name: yup.string().required(),
+  //     role: yup.string().required(),
+  //     profilePictureUrl: yup.string().required(),
+  //     phoneNumber: yup.string().required(),
+  //   }),
+  //   onSubmit: (values) => {
+  //     axiosInstance
+  //       .post(
+  //         "/register",
+  //         {
+  //           email: values.email,
+  //           name: values.name,
+  //           password: values.password,
+  //           passwordRepeat: values.passwordRepeat,
+  //           role: values.role,
+  //           profilePictureUrl: values.profilePictureUrl,
+  //           phoneNumber: values.phoneNumber,
+  //         },
+  //         {
+  //           headers: {
+  //             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+  //           },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         console.log(response);
+  //         alert("Register Berhasil");
+  //         window.location.reload();
+  //       });
+  //   },
+  // });
+
   const formik = useFormik({
     initialValues: {
       email: "",
-      name: "",
       password: "",
-      passwordRepeat: "",
-      role: "",
-      profilePictureUrl: "",
-      phoneNumber: "",
     },
     validationSchema: yup.object().shape({
       email: yup.string().required().email(),
       password: yup.string().required(),
-      passwordRepeat: yup.string().required(),
-      name: yup.string().required(),
-      role: yup.string().required(),
-      profilePictureUrl: yup.string().required(),
-      phoneNumber: yup.string().required(),
     }),
     onSubmit: (values) => {
       axiosInstance
         .post(
-          "/register",
+          "/login",
           {
             email: values.email,
-            name: values.name,
             password: values.password,
-            passwordRepeat: values.passwordRepeat,
-            role: values.role,
-            profilePictureUrl: values.profilePictureUrl,
-            phoneNumber: values.phoneNumber,
           },
           {
             headers: {
@@ -50,9 +109,13 @@ const NavigationBar = () => {
           }
         )
         .then((response) => {
-          console.log(response);
-          alert("Register Berhasil");
+          alert("Login Berhasil");
+          localStorage.setItem("datas", JSON.stringify(response.data));
           window.location.reload();
+          console.log(response);
+        })
+        .catch((error) => {
+          alert(error.message);
         });
     },
   });
@@ -61,6 +124,16 @@ const NavigationBar = () => {
     const { target } = event;
     formik.setFieldValue(target.name, target.value); // <--- untuk mengganti isi
   };
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("datas");
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setName(parsedData.name);
+      setNumber(parsedData.number);
+      setAvatar(parsedData.profilePictureUrl);
+    }
+  });
 
   return (
     <div>
@@ -81,8 +154,7 @@ const NavigationBar = () => {
                 <Link to="/Activities">Activities</Link>
                 <Link to>Contact Us</Link>
                 <Link to>About</Link>
-                </Nav>
-
+              </Nav>
             </Nav>
             <Form className="d-flex">
               <Form.Control
@@ -91,10 +163,19 @@ const NavigationBar = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Nav.Link className="mt-2" onClick={handleShow}>
-                Register
-              </Nav.Link>
+              {isLogin ? (
+                <div className="text-white mt-2" onClick={handleProfileShow}>
+                  Profile
+                </div>
+              ) : (
+                <Nav.Link className="mt-2" onClick={handleShow}>
+                  Login
+                </Nav.Link>
+              )}
             </Form>
+            <div className="btn-register">
+              <Link to="/Register">Register</Link>
+            </div>
           </Navbar.Collapse>
         </Container>
 
@@ -124,7 +205,7 @@ const NavigationBar = () => {
                 </Form.Text>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Name:</Form.Label>
                 <Form.Control
                   onChange={handleForm}
@@ -133,7 +214,7 @@ const NavigationBar = () => {
                   name="password"
                   values={formik.values.name}
                 />
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
@@ -146,7 +227,7 @@ const NavigationBar = () => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password Repeat</Form.Label>
                 <Form.Control
                   onChange={handleForm}
@@ -155,9 +236,9 @@ const NavigationBar = () => {
                   name="password"
                   values={formik.values.passwordRepeat}
                 />
-              </Form.Group>
+              </Form.Group> */}
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Role</Form.Label>
                 <Form.Control
                   onChange={handleForm}
@@ -166,9 +247,9 @@ const NavigationBar = () => {
                   name="password"
                   values={formik.values.role}
                 />
-              </Form.Group>
+              </Form.Group> */}
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Profile Picture</Form.Label>
                 <Form.Control
                   onChange={handleForm}
@@ -177,9 +258,9 @@ const NavigationBar = () => {
                   name="password"
                   values={formik.values.profilePictureUrl}
                 />
-              </Form.Group>
+              </Form.Group> */}
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Phone Number: </Form.Label>
                 <Form.Control
                   onChange={handleForm}
@@ -188,11 +269,34 @@ const NavigationBar = () => {
                   name="password"
                   values={formik.values.phoneNumber}
                 />
-              </Form.Group>
+              </Form.Group> */}
+
               <Button variant="primary" type="submit">
                 Submit
               </Button>
             </Form>
+          </Modal.Body>
+        </Modal>
+
+        {/* Modal Profile */}
+        <Modal show={showProfile} onHide={handleProfileClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="titlePremiumProfile">Welcome !</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="profile">
+              <Image src={avatar} className="img-profile" />
+              <div className="username">Name: {name}</div>
+              <div className="username">Role: {number}</div>
+            </div>
+            <Button
+              variant="danger"
+              type="submit"
+              className="btn-subs"
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
           </Modal.Body>
         </Modal>
       </Navbar>
