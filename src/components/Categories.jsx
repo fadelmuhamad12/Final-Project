@@ -43,16 +43,18 @@ const Categories = () => {
       <h1>Kategori yang cocok buat kamu</h1>
       <div className="fullCategories d-flex justify-content-center mt-5">
       
-        {categories.slice(0, 6).map((category) => {
+        {categories.slice(0, 4).map((category) => {
           return (
-            <Col xs={6} s={4} sm={4} md={4} lg={2} xl={4}  >
-              <Card style={{ width: "18rem" }}>
+            <div key={category.id} className="coverCategories"> 
+            <Col xs={6} s={4} sm={4} md={4} lg={4} xl={4}  className= "justify-content-center text-align-center ">
+              <Card style={{ width: "18rem", margin: "10px" }}>
                 <Card.Img variant="top" src={category.imageUrl} />
                 <Card.Body>
                   <Card.Title>{category.name}</Card.Title>
                 </Card.Body>
               </Card>
             </Col>
+            </div>
           );
         })}
       </div>

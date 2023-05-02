@@ -19,7 +19,6 @@ const Home = () => {
      <NavigationBar />
      <Higlight />
      </div>
-     
      <div >
        <Promo />
        <Categories />

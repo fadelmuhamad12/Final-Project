@@ -10,35 +10,43 @@ const Promo = () => {
     className: "center",
     centerMode: true,
     infinite: true,
-    centerPadding: "2px",
+    centerPadding: "10px",
     slidesToShow: 3,
     speed: 500,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const [promos, setPromos] = useState([]);
@@ -62,27 +70,36 @@ const Promo = () => {
 
   return (
     <div className="fullCoverPromo">
-       <h1 className="promoText">Cek Promo yang tersedia yuk </h1>
+      <h3 className="promoText">Cek Promo yang tersedia yuk </h3>
       <Slider {...settings}>
         {promos.map((promo) => {
           return (
-            
-            <div className="flip-card" key={promo.id}>
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <img src={promo.imageUrl} alt="" />
-                  <p className="title">{promo.title}</p>
-                  {/* <p>{promo.title}</p> */}
-                </div>
+            <div className="coverPromoCards" key={promo.id}>
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img src={promo.imageUrl} alt="" />
+                    <p className="title">{promo.title}</p>
+                    {/* <p>{promo.title}</p> */}
+                  </div>
 
-                <div className="flip-card-back">
-                  <p className="title">Minimum Claim Price</p>
-                  <p>{promo.minimum_claim_price}</p>
-                  <p>Promo code:</p>
-                  <p>{promo.promo_code}</p>
-                  <p>
-                    dan Dapatkan diskon sebesar {promo.promo_discount_price}
-                  </p>
+                  <div className="flip-card-back ">
+                    <p className="title">Minimum Claim Price</p>
+                    <p>{promo.minimum_claim_price}</p>
+                    <p>Promo code:</p>
+                    <p>{promo.promo_code}</p>
+                    <p>
+                      dan Dapatkan diskon sebesar {promo.promo_discount_price}
+                    </p>
+                    <div className="d-flex justify-content-center">
+                    <button className="learn-more ">
+                      <span className="circle" aria-hidden="true">
+                        <span className="icon arrow"></span>
+                      </span>
+                      <span className="button-text">See Details</span>
+                    </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

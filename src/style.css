@@ -57,14 +57,14 @@ a.navLink .navbar-nav {
 
 /*--------------- Promo Cards ----------*/
 .fullCoverPromo {
-  /* background-color: grey; */
-  width: 70%;
+  background-color: rgb(245, 243, 243);
+  width: 75%;
   /* height: 400px;
-  justify-content: center;
-  border-radius: 50px; */
+  justify-content: center; */
+  border-radius: 50px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .imgPromo {
@@ -83,11 +83,14 @@ div.card-title.h5 {
   color: black ;
   margin-left: 30px;
 }
-/*--------------- Promo Cards ends ----------*/
+
+.coverPromoCards{
+  margin-top: 15px;
+}
 
 .flip-card {
   background-color: transparent;
-  width: 190px;
+  width: 300px;
   height: 320px;
   perspective: 1000px;
   font-family: sans-serif;
@@ -125,13 +128,13 @@ div.card-title.h5 {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   /* border: 1px solid coral; */
-  border-radius: 1rem;
+  border-radius: 2rem;
 }
 
 .flip-card-front {
-  /* background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
-     rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
-  color: coral; */
+  background: linear-gradient(120deg, rgb(109, 211, 168) 60%, rgb(255, 231, 222) 88%,
+     rgb(255, 211, 195) 40%, rgba(214, 106, 106, 0.603) 48%);
+
 }
 
 .flip-card-back {
@@ -140,3 +143,110 @@ div.card-title.h5 {
   color: black;
   transform: rotateY(180deg);
 }
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+ }
+ 
+ button.learn-more {
+  width: 12rem;
+  height: auto;
+ }
+ 
+ button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+ }
+ 
+ button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+ }
+ 
+ button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+ }
+ 
+ button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+ }
+ 
+ button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+ }
+ 
+ button:hover .circle {
+  width: 100%;
+ }
+ 
+ button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+ }
+ 
+ button:hover .button-text {
+  color: #fff;
+ }
+
+/*--------------- Promo Cards ends ----------*/
+
+
+
+/* -------- Activities Cards--------------- */
+.coveraActivitiesCards{
+  display: flex;
+
+}
+
+.activitiesText {
+  margin-top: 9rem;
+  text-align: center;
+  margin-inline: 50px;
+}
+
+
+/* -------- Activities Cards End--------------- */
