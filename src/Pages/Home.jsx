@@ -1,13 +1,13 @@
 
 import React from "react";
-import Banner from "../components/Banner";
-import Categories from "../components/Categories";
-import Higlight from "../components/Higlight";
+import Banner from "../Pages/Banner";
+import Categories from "../Pages/Categories";
+import Higlight from "../Pages/Higlight";
 import NavigationBar from "../components/NavigationBar";
-import Promo from "../components/Promo";
+import Promo from "../Pages/Promo";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Activities from "../components/Activities";
+import Activities from "../Pages/Activities";
 
 
 

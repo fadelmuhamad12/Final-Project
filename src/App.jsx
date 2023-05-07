@@ -1,12 +1,14 @@
 import Home from "./Pages/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './style.css'
-import Activities from "./components/Activities";
-import Banner from "./components/Banner";
-import Categories from "./components/Categories";
-import Higlight from "./components/Higlight";
-import Promo from "./components/Promo";
-import Register from "./components/Register";
+import Activities from "./Pages/Activities";
+import Banner from "./Pages/Banner";
+import Categories from "./Pages/Categories";
+import Higlight from "./Pages/Higlight";
+import Promo from "./Pages/Promo";
+import Register from "./Pages/Register";
+import CategoriesAdmin from "./components/CategoriesAdmin";
+import ActivitiesAdmin from "./components/ActivitiesAdmin";
 
 
 function App() {
@@ -21,6 +23,11 @@ function App() {
         <Route exact path='/Higlight' Component={Higlight}></Route>
         <Route exact path='/Promo' Component={Promo}></Route>
         <Route exact path='/Register' Component={Register}></Route>
+
+        {/* PATH ADMIN */}
+        <Route exact path='/CategoriesAdmin' Component={CategoriesAdmin}></Route>
+        <Route exact path='/ActivitiesAdmin' Component={ActivitiesAdmin}></Route>
+
 
 
       </Routes>

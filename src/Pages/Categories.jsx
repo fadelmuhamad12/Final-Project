@@ -16,7 +16,7 @@ const Categories = () => {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
       });
-      console.log(categories.data.data);
+      // console.log(categories.data.data);
       setCategoies(categories.data.data);
     } catch (error) {
       console.log(error);
@@ -27,39 +27,59 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      imageUrl: "",
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required(),
-      imageUrl: Yup.string().required(),
-    }),
-    onSubmit: (values) => {
-      axiosInstance
-        .post(
-          "/create-category",
-          {
-            name: values.name,
-            imageUrl: values.imageUrl,
-          },
-          {
-            headers: {
-              apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-              Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response, "berhasil");
-          fetchCategories();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     name: "",
+  //     imageUrl: "",
+  //   },
+  //   validationSchema: Yup.object({
+  //     name: Yup.string().required(),
+  //     imageUrl: Yup.string().required(),
+  //   }),
+  //   onSubmit: (values) => {
+  //     axiosInstance
+  //       .post(
+  //         "/create-category",
+  //         {
+  //           name: values.name,
+  //           imageUrl: values.imageUrl,
+  //         },
+  //         {
+  //           headers: {
+  //             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+  //             Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+  //           },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         console.log(response, "berhasil");
+  //         fetchCategories();
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   },
+  // });
+
+  // const handleDelete = () => {
+  //   axiosInstance
+  //     .delete(
+  //       `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-category/${{CATEGORY_ID}}`, {
+  //         headers: {
+  //           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+  //           Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+  //         }
+  //       }        
+  //     )
+  //     .then(function (response) {
+  //       axiosInstance.get("/categories", {
+  //         headers: {
+  //           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+  //         },
+  //       });
+  //       setCategoies(response.data.data);
+  //     });
+  // };
 
   return (
     <>
@@ -77,7 +97,7 @@ const Categories = () => {
                 xl={4}
                 className="justify-content-center text-align-center "
               >
-                <Card style={{ width: "50px", margin: "10px" }}>
+                <Card style={{ width: "150px", margin: "10px" }}>
                   <Card.Img variant="top" src={category.imageUrl} />
                   <Card.Body>
                     <Card.Title>{category.name}</Card.Title>
@@ -89,7 +109,7 @@ const Categories = () => {
         })}
       </div>
 
-      <Form onSubmit={formik.handleSubmit}>
+      {/* <Form onSubmit={formik.handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>name</Form.Label>
           <Form.Control
@@ -119,7 +139,10 @@ const Categories = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-      </Form>
+        <Button variant="primary" type="submit" name="delete">
+          Delete
+        </Button>
+      </Form> */}
     </>
   );
 };

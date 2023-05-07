@@ -12,10 +12,13 @@ import axiosInstance from "../api/axios";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const NavigationBar = () => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
+  const [role, setRole] = useState("")
   const [number, setNumber] = useState("");
   const [avatar, setAvatar] = useState("");
   const [showProfile, setShowProfile] = useState(false);
@@ -129,9 +132,10 @@ const NavigationBar = () => {
     const storedData = localStorage.getItem("datas");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
-      setName(parsedData.name);
-      setNumber(parsedData.number);
-      setAvatar(parsedData.profilePictureUrl);
+      setName(parsedData.data.name);
+      setNumber(parsedData.data.number);
+      setAvatar(parsedData.data.profilePictureUrl);
+      setRole(parsedData.data.role)
     }
   });
 
@@ -284,10 +288,33 @@ const NavigationBar = () => {
             <Modal.Title className="titlePremiumProfile">Welcome !</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+           
             <div className="profile">
-              <Image src={avatar} className="img-profile" />
+              <Image src={"avatar"} className="img-profile" />
               <div className="username">Name: {name}</div>
-              <div className="username">Role: {number}</div>
+              <div className="username">Role: {role}</div>
+              {isLogin && role === "admin" || "Admin" ? (
+                 <DropdownButton
+                 id="dropdown-basic-button"
+                 title="Kelola Travel"
+               >
+                     <div className="">
+                     <Link to="/CategoriesAdmin">Kelola Banner </Link>
+                     <Link to="/ActivitiesAdmin">Kelola Banner </Link>
+                     <Link to="/CategoriesAdmin">Kelola Banner </Link>
+                     </div>
+               </DropdownButton>
+              ) : ("Bukan Admin") }
+              {/* <DropdownButton
+                id="dropdown-basic-button"
+                title="Kelola Travel"
+              >
+                    <div className="">
+                    <Link to="/CategoriesAdmin">Kelola Banner </Link>
+                    <Link to="/CategoriesAdmin">Kelola Banner </Link>
+                    <Link to="/CategoriesAdmin">Kelola Banner </Link>
+                    </div>
+              </DropdownButton> */}
             </div>
             <Button
               variant="danger"

@@ -3,10 +3,11 @@ import axiosInstance from "../api/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState, useEffect, } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
-
+  const navigate = useNavigate();
  
   // const [emailCreate, setEmailCreate] = useState("");
   // const [nameCreate, setNameCreate] = useState("");
@@ -67,6 +68,7 @@ const Register = () => {
         .then((response) => {
           alert("register berhasil");
           console.log(response);
+          navigate("/")
         })
         .catch((error) => {
           alert(error.message);
