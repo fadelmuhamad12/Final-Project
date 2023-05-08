@@ -299,9 +299,11 @@ const NavigationBar = () => {
                  title="Kelola Travel"
                >
                      <div className="">
-                     <Link to="/CategoriesAdmin">Kelola Banner </Link>
-                     <Link to="/ActivitiesAdmin">Kelola Banner </Link>
-                     <Link to="/CategoriesAdmin">Kelola Banner </Link>
+                     <Link to="/CategoriesAdmin">Kelola Kategori </Link>
+                     <Link to="/ActivitiesAdmin">Kelola Activities </Link>
+                     <Link to="/BannersAdmin">Kelola Banner</Link>
+                     <Link to="/PromosAdmin">Kelola Promo </Link>
+
                      </div>
                </DropdownButton>
               ) : ("Bukan Admin") }

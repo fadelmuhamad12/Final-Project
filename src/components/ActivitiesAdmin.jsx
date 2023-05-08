@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../api/axios";
-import Card from "react-bootstrap/Card";
 import { Col, Button } from "react-bootstrap";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
+import Table from "react-bootstrap/Table";
 
 const ActivitiesAdmin = () => {
+  const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [activities, setActivities] = useState([]);
+  const [modal, setModal] = useState(false);
 
   const fetchActivities = async () => {
     try {
@@ -27,32 +29,17 @@ const ActivitiesAdmin = () => {
       categoryId: "",
       title: "",
       description: "",
-      imageUrls: [""],
-      price: 0,
-      price_discount: 0,
-      rating: 0,
-      total_reviews: 0,
+      imageUrls: "",
+      price: "",
+      price_discount: "",
+      rating: "",
+      total_reviews: "",
       facilities: "",
       address: "",
       province: "",
       city: "",
       location_maps: "",
     },
-    validationSchema: Yup.object({
-      categoryId: Yup.string().required(),
-      title: Yup.string().required(),
-      description: Yup.string().required(),
-      imageUrls: Yup.string().required(),
-      price: Yup.string().required(),
-      price_discount: Yup.string().required(),
-      rating: Yup.string().required(),
-      total_reviews: Yup.string().required(),
-      facilities: Yup.string().required(),
-      address: Yup.string().required(),
-      province: Yup.string().required(),
-      city: Yup.string().required(),
-      location_maps: Yup.string().required(),
-    }),
     onSubmit: (values) => {
       axiosInstance
         .post(
@@ -62,8 +49,8 @@ const ActivitiesAdmin = () => {
             title: values.title,
             description: values.description,
             imageUrls: values.imageUrls,
-            price: values.price,
-            price_discount: values.price_discount,
+            price: values.imageUrls,
+            price_discount: price_discount,
             rating: values.rating,
             total_reviews: values.total_reviews,
             facilities: values.facilities,
@@ -74,74 +61,79 @@ const ActivitiesAdmin = () => {
           },
           {
             headers: {
-              apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+              apiKey: apiKeys,
               Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
             },
           }
         )
-        .then((response) => {
-          console.log(response, "berhasil");
-          fetchCategories();
-        })
-        .catch((error) => {
-          console.log(error);
+        .then(() => {
+          fetchActivities();
         });
     },
   });
 
+  const showModal = () => {
+    setModal(true);
+  };
 
+  const closeModal = () => {
+    setModal(false);
+  };
 
   useEffect(() => {
     fetchActivities();
   }, []);
 
   return (
-      <>
-    <div className="coverCategoriesAdmin mt-5">
-        <table width={1000}>
-            <thead>
+    <>
+      <div className="coverCategoriesAdmin mt-5">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>categoryId</th>
+              <th>title</th>
+              <th>description</th>
+              <th>imageUrls</th>
+              <th>price</th>
+              <th>price_discount</th>
+              <th>rating</th>
+              <th>total_reviews</th>
+              <th>facilities</th>
+              <th>address</th>
+              <th>province</th>
+              <th>city</th>
+              <th>location_maps</th>
+            </tr>
+          </thead>
+          {activities.map((activity) => {
+            return (
+              <tbody key={activity.id}>
                 <tr>
-                    <th>Category Id</th>
-                    <th>title</th>
-                    <th>description</th>
-                    <th>imageUrls</th>
-                    <th>price</th>
-                    <th>price_discount</th>
-                    <th>rating</th>
-                    <th>total_reviews</th>
-                    <th>facilities</th>
-                    <th>address</th>
-                    <th>province</th>
-                    <th>city</th>
-                    <th>location_maps</th>
+                  <td>{activity.id}</td>
+                  <td>{activity.title}</td>
+                  <td>{activity.description}</td>
+                  <td>
+                    <img src={activity.imageUrls} style={{ width: "50px" }} />
+                  </td>
+                  <td>{activity.price}</td>
+                  <td>{activity.price_discount}</td>
+                  <td>{activity.rating}</td>
+                  <td>{activity.total_reviews}</td>
+                  <td>{activity.facilities}</td>
+                  <td>{activity.address}</td>
+                  <td>{activity.province}</td>
+                  <td>{activity.city}</td>
+                  <td>maps</td>
                 </tr>
-            </thead>
-            {activities.map((activity) => {
-                return (
-                    <tbody key={activity.id}>
-                        <tr>
-                            <td>{activity.id}</td>
-                            <td>{activity.title}</td>
-                            <td>"......"</td>
-                            <td>imageUrls</td>
-                            <td><img src={activity.imageUrls[1]} style={{width: "100px"}}/></td>
-                            <td>{activity.price}</td>
-                            <td>{activity.price_discount}</td>
-                            <td>{activity.rating}</td>
-                            <td>{activity.total_reviews}</td>
-                            <td>{activity.facilities}</td>
-                            <td>{activity.address}</td>
-                            <td>{activity.province}</td>
-                            <td>{activity.city}</td>
-                            <td>....</td>
-                        </tr>
-                    </tbody>
-                )
-            })}
-        </table>
-        {/* FORM ADD */}
-        <div className="cardUpdateCategoriesAdmin">
-        <span className="title">Create Activities</span>
+              </tbody>
+            );
+          })}
+        </Table>
+      </div>
+
+      {/* CREATE FORM */}
+      <div className="cardUpdateCategoriesAdmin">
+        <span className="title">Create Activity</span>
         <form className="form" onSubmit={formik.handleSubmit}>
           <div className="group">
             <input
@@ -149,151 +141,162 @@ const ActivitiesAdmin = () => {
               type="text"
               name="categoryId"
               id="categoryId"
-              value={formik.values.categoryId}
               onChange={formik.handleChange}
+              value={formik.values.categoryId}
             />
-            <label htmlFor="name">Category Id</label>
+            <label htmlFor="categoryId">Category Id</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="title"
               name="title"
-              value={formik.values.title}
               onChange={formik.handleChange}
+              value={formik.values.title}
             />
-            <label htmlFor="email">title</label>
+            <label htmlFor="title">Title</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="description"
               name="description"
-              value={formik.values.description}
               onChange={formik.handleChange}
+              value={formik.values.description}
             />
-            <label htmlFor="email">description</label>
+            <label htmlFor="description">Img Url</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="imageUrls"
               name="imageUrls"
-              value={formik.values.imageUrls}
               onChange={formik.handleChange}
+              value={formik.values.imageUrls}
             />
-            <label htmlFor="email">Img Url</label>
+            <label htmlFor="imageUrls">imageUrls</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
-              type="number"
+              type="text"
               id="price"
               name="price"
-              value={formik.values.price}
               onChange={formik.handleChange}
+              value={formik.values.price}
             />
-            <label htmlFor="email">price</label>
+            <label htmlFor="price">price</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="number"
               id="price_discount"
               name="price_discount"
-              value={formik.values.price_discount}
               onChange={formik.handleChange}
+              value={formik.values.price_discount}
             />
-            <label htmlFor="email">price_discount</label>
+            <label htmlFor=" price_discount">price_discount</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
-              type="text"
+              type="number"
               id="rating"
               name="rating"
-              value={formik.values.rating}
               onChange={formik.handleChange}
+              value={formik.values.rating}
             />
-            <label htmlFor="email">rating</label>
+            <label htmlFor="rating">rating</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="number"
               id="total_reviews"
               name="total_reviews"
-              value={formik.values.total_reviews}
               onChange={formik.handleChange}
+              value={formik.values.total_reviews}
             />
-            <label htmlFor="email">total_reviews</label>
+            <label htmlFor="total_reviews">total_reviews</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="facilities"
               name="facilities"
-              value={formik.values.facilities}
               onChange={formik.handleChange}
+              value={formik.values.facilities}
             />
-            <label htmlFor="email">facilities</label>
+            <label htmlFor="facilities">facilities</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="address"
               name="address"
-              value={formik.values.address}
               onChange={formik.handleChange}
+              value={formik.values.address}
             />
-            <label htmlFor="email">address</label>
+            <label htmlFor="address">address</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="province"
               name="province"
-              value={formik.values.province}
               onChange={formik.handleChange}
+              value={formik.values.province}
             />
-            <label htmlFor="email">province</label>
+            <label htmlFor="province">province</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="city"
               name="city"
-              value={formik.values.city}
               onChange={formik.handleChange}
+              value={formik.values.city}
             />
-            <label htmlFor="email">city</label>
+            <label htmlFor="city">city</label>
           </div>
+
           <div className="group">
             <input
               placeholder=""
               type="text"
               id="location_maps"
               name="location_maps"
-              value={formik.values.location_maps}
               onChange={formik.handleChange}
+              value={formik.values.location_maps}
             />
-            <label htmlFor="email">location_maps</label>
+            <label htmlFor="location_maps">location_maps</label>
           </div>
 
-          {/* <button type="submit">Submit</button> */}
+
           <Button variant="primary" type="submit">
             Submit
           </Button>
         </form>
       </div>
-    </div>
     </>
   );
 };

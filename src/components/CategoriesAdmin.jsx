@@ -30,12 +30,22 @@ const CategoriesAdmin = () => {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
       });
-      console.log(categories.data.data);
+      // console.log(categories.data.data);
       setCategoies(categories.data.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+
+  // const fetchCategoriesById = async (id) => {
+  //   const categoryById = await axiosInstance.get (`/category/${id}`, {
+  //     headers: {
+  //       apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+  //     }
+  //   })
+   
+  // }
 
   const formik = useFormik({
     initialValues: {
@@ -100,7 +110,8 @@ const CategoriesAdmin = () => {
       });
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (id) => {
+    e.preventDefault();
     axiosInstance
       .post(
         `update-category/${id}`,
@@ -117,21 +128,15 @@ const CategoriesAdmin = () => {
       )
       .then(() => {
         fetchCategories();
-        localStorage.setItem("datas", JSON.stringify(data));
+        // localStorage.setItem("datas", JSON.stringify(data));
         alert("category updated");
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error, "failed");
       });
   };
 
-  const editClicked = (categoryId) => {
-    setName(category.name);
-    setImgUrl(category.imageUrl);
-    setId(category.id);
-    setModal(true);
-  };
 
   useEffect(() => {
     fetchCategories();
@@ -284,10 +289,9 @@ const CategoriesAdmin = () => {
       >
         <Modal.Body>
           <div className="cardUpdateCategoriesAdmin">
-        
               <span className="title">Update Kategori</span>
-              <form className="form" onSubmit={handleUpdate}>
-                <div className="group">
+              <form className="form">
+                {/* <div className="group">
                   <input
                     placeholder=""
                     type="text"
@@ -297,7 +301,7 @@ const CategoriesAdmin = () => {
                     onChange={(e) => setId(e.target.value)}
                   />
                   <label htmlFor="name">id</label>
-                </div>
+                </div> */}
                 <div className="group">
                   <input
                     placeholder=""
@@ -319,10 +323,8 @@ const CategoriesAdmin = () => {
                   />
                   <label htmlFor="email">Img Url</label>
                 </div>
-
-                <button type="submit" onClick={()=> editClicked(categories.id)}>Submit</button>
+                <button type="submit" onClick={()=> handleUpdate(category.id)}>Submit</button>
               </form>
-            
           </div>
         </Modal.Body>
         <Modal.Footer>

@@ -9,6 +9,9 @@ import Promo from "./Pages/Promo";
 import Register from "./Pages/Register";
 import CategoriesAdmin from "./components/CategoriesAdmin";
 import ActivitiesAdmin from "./components/ActivitiesAdmin";
+import BannersAdmin from "./components/BannersAdmin";
+import PromosAdmin from "./components/PromosAdmin";
+
 
 
 function App() {
@@ -27,6 +30,11 @@ function App() {
         {/* PATH ADMIN */}
         <Route exact path='/CategoriesAdmin' Component={CategoriesAdmin}></Route>
         <Route exact path='/ActivitiesAdmin' Component={ActivitiesAdmin}></Route>
+        <Route exact path='/BannersAdmin' Component={BannersAdmin}></Route>
+        <Route exact path='/PromosAdmin' Component={PromosAdmin}></Route>
+
+
+
 
 
 
