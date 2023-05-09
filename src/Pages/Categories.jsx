@@ -8,6 +8,9 @@ import * as Yup from "yup";
 
 const Categories = () => {
   const [categories, setCategoies] = useState([]);
+  // const [name, setName] = useState(localStorage.getItem("nameCategories"));
+  // const [image,setImage] = useState(localStorage.getItem("imageCategories"));
+  // const [id, setId] = useState(localStorage.getItem("idCategories"));
 
   const fetchCategories = async () => {
     try {
@@ -16,8 +19,15 @@ const Categories = () => {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
       });
-      // console.log(categories.data.data);
+      console.log(categories.data.data);
       setCategoies(categories.data.data);
+      // const nameCategories = categories.data.data.map((category)=> category.name);
+      // localStorage.setItem("nameCategories", nameCategories);
+      // const imageCategories = categories.data.data.map((category)=> category.imageUrl);
+      // localStorage.setItem("imageCategories", imageCategories)
+      // const idCategories = categories.data.data.map((category)=> category.id);
+      // localStorage.setItem("idCategories", idCategories);
+
     } catch (error) {
       console.log(error);
     }
@@ -27,59 +37,7 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     name: "",
-  //     imageUrl: "",
-  //   },
-  //   validationSchema: Yup.object({
-  //     name: Yup.string().required(),
-  //     imageUrl: Yup.string().required(),
-  //   }),
-  //   onSubmit: (values) => {
-  //     axiosInstance
-  //       .post(
-  //         "/create-category",
-  //         {
-  //           name: values.name,
-  //           imageUrl: values.imageUrl,
-  //         },
-  //         {
-  //           headers: {
-  //             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-  //             Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-  //           },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         console.log(response, "berhasil");
-  //         fetchCategories();
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
-  // });
-
-  // const handleDelete = () => {
-  //   axiosInstance
-  //     .delete(
-  //       `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-category/${{CATEGORY_ID}}`, {
-  //         headers: {
-  //           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-  //           Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-  //         }
-  //       }        
-  //     )
-  //     .then(function (response) {
-  //       axiosInstance.get("/categories", {
-  //         headers: {
-  //           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-  //         },
-  //       });
-  //       setCategoies(response.data.data);
-  //     });
-  // };
+  
 
   return (
     <>
@@ -109,40 +67,7 @@ const Categories = () => {
         })}
       </div>
 
-      {/* <Form onSubmit={formik.handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter email"
-            id="name"
-            name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Image Url</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Password"
-            id="imageUrl"
-            name="imageUrl"
-            value={formik.values.imageUrl}
-            onChange={formik.handleChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-        <Button variant="primary" type="submit" name="delete">
-          Delete
-        </Button>
-      </Form> */}
     </>
   );
 };

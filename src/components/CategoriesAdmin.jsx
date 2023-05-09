@@ -9,11 +9,11 @@ import NavigationBar from "../components/NavigationBar";
 import Modal from "react-bootstrap/Modal";
 
 const CategoriesAdmin = () => {
-  const [categories, setCategoies] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [modal, setModal] = useState(false);
-  const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [imageUrl, setImgUrl] = useState("");
+  const [imageUrl,setImageUrl] = useState("");
+  const [id, setId] = useState("");
 
   const handleModalShow = () => {
     setModal(true);
@@ -29,23 +29,34 @@ const CategoriesAdmin = () => {
         headers: {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
-      });
+      });  // <== SETELAH KEPANGGIL MAU DILAKUKAN APA AKSINYA (AKSINYA ADA DI BAWAH)
       // console.log(categories.data.data);
-      setCategoies(categories.data.data);
+      setCategories(categories.data.data);
+      // const nameCategories = categories.data.data.map((category)=> category.name);
+      // localStorage.setItem("nameCategories", nameCategories);
+      // const imageCategories = categories.data.data.map((category)=> category.imageUrl);
+      // localStorage.setItem("imageCategories", imageCategories)
+      // const idCategories = categories.data.data.map((category)=> category.id);
+      // localStorage.setItem("idCategories", idCategories);
     } catch (error) {
       console.log(error);
     }
   };
 
 
-  // const fetchCategoriesById = async (id) => {
-  //   const categoryById = await axiosInstance.get (`/category/${id}`, {
-  //     headers: {
-  //       apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-  //     }
-  //   })
+  const fetchCategoriesById = async (id) => {
+    const categoryById = await axiosInstance.get (`/category/${id}`, {
+      headers: {
+        apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+      }
+    })
+    setId(categoryById.data.data.id);
+    setName(categoryById.data.data.name);
+    setImageUrl(categoryById.data.data.imageUrl);
+
+    handleModalShow();
    
-  // }
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -99,7 +110,7 @@ const CategoriesAdmin = () => {
             },
           })
           .then((response) => {
-            setCategoies(response.data.data);
+            setCategories(response.data.data);
           })
           .catch((error) => {
             console.error(error);
@@ -110,7 +121,7 @@ const CategoriesAdmin = () => {
       });
   };
 
-  const handleUpdate = (id) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     axiosInstance
       .post(
@@ -127,10 +138,10 @@ const CategoriesAdmin = () => {
         }
       )
       .then(() => {
-        fetchCategories();
-        // localStorage.setItem("datas", JSON.stringify(data));
+      
         alert("category updated");
         window.location.reload();
+        fetchCategories();
       })
       .catch((error) => {
         console.log(error, "failed");
@@ -140,13 +151,13 @@ const CategoriesAdmin = () => {
 
   useEffect(() => {
     fetchCategories();
-    const storedData = localStorage.getItem("datas");
-    if (storedData) {
-      const parsedData = JSON.parse(storedData);
-      setName(parsedData.name);
-      setId(parsedData.id);
-      setImgUrl(parsedData.imageUrl);
-    }
+    // const storedData = localStorage.getItem("datas");
+    // if (storedData) {
+    //   const parsedData = JSON.parse(storedData);
+    //   setName(parsedData.name);
+    //   setId(parsedData.id);
+    //   setImageUrl(parsedData.imageUrl);
+    // }
   }, []);
 
   return (
@@ -181,7 +192,7 @@ const CategoriesAdmin = () => {
                     </button>
                   </td>
                   <td>
-                    <button onClick={handleModalShow}>Update</button>
+                    <button onClick={() => fetchCategoriesById(category.id)}> Update</button>
                   </td>
                 </tr>
               </tbody>
@@ -190,31 +201,9 @@ const CategoriesAdmin = () => {
         </table>
       </div>
 
-      {/* <div className="fullCategories d-flex justify-content-center mt-5">
-        {categories.map((category) => {
-          return (
-            <div key={category.id} className="coverCategories">
-              <Col
-                xs={6}
-                s={4}
-                sm={4}
-                md={4}
-                lg={4}
-                xl={4}
-                className="justify-content-center text-align-center "
-              >
-                <Card style={{ width: "50px", margin: "10px" }}>
-                  <Card.Img variant="top" src={category.imageUrl} />
-                  <Card.Body>
-                    <Card.Title>{category.name}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </div>
-          );
-        })}
-      </div> */}
+        
 
+        {/* CREATE MODAL */}
       <div className="cardUpdateCategoriesAdmin">
         <span className="title">Create Category</span>
         <form className="form" onSubmit={formik.handleSubmit}>
@@ -248,39 +237,8 @@ const CategoriesAdmin = () => {
         </form>
       </div>
 
-      {/* <Form onSubmit={formik.handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Masukkan Nama Kategori"
-            id="name"
-            name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Image Url</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Masukkan Img Url"
-            id="imageUrl"
-            name="imageUrl"
-            value={formik.values.imageUrl}
-            onChange={formik.handleChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form> */}
-
-      {/* Modal Edit */}
+      {/* Modal Update */}
       <Modal
         show={modal}
         onHide={handleModalClose}
@@ -290,18 +248,9 @@ const CategoriesAdmin = () => {
         <Modal.Body>
           <div className="cardUpdateCategoriesAdmin">
               <span className="title">Update Kategori</span>
-              <form className="form">
-                {/* <div className="group">
-                  <input
-                    placeholder=""
-                    type="text"
-                    id="id"
-                    name="id"
-                    value={id}
-                    onChange={(e) => setId(e.target.value)}
-                  />
-                  <label htmlFor="name">id</label>
-                </div> */}
+          
+              <form className="form" onSubmit={handleUpdate}>
+             
                 <div className="group">
                   <input
                     placeholder=""
@@ -318,12 +267,12 @@ const CategoriesAdmin = () => {
                     placeholder=""
                     id="imageUrl"
                     name="imageUrl"
-                    onChange={(e) => setImgUrl(e.target.value)}
+                    onChange={(e) => setImageUrl(e.target.value)}
                     value={imageUrl}
                   />
-                  <label htmlFor="email">Img Url</label>
+                  <label htmlFor="imageUrl">Img Url</label>
                 </div>
-                <button type="submit" onClick={()=> handleUpdate(category.id)}>Submit</button>
+                <button type="submit" >Submit</button>
               </form>
           </div>
         </Modal.Body>

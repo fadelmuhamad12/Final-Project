@@ -31,6 +31,9 @@ const Banner = () => {
     }
   };
 
+
+  
+
   useEffect(() => {
     fetchBanner();
   }, []);

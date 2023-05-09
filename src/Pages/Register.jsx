@@ -9,14 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
  
-  // const [emailCreate, setEmailCreate] = useState("");
-  // const [nameCreate, setNameCreate] = useState("");
-  // const [passwordCreate, setPasswordCreate] = useState("");
-  // const [passwordRepeatCrate, setPasswordRepeatCreate] = useState("");
-  // const [roleCreate, setRoleCreate] = useState("");
-  // const [profilePictureUrlCrate, setProfilePictureUrlCreate] = useState("");
-  // const [phoneNumberCreate, setPhoneNumberCreate] = useState("");
-
   // Formik Register
   const formik = useFormik({
     initialValues: {
@@ -76,33 +68,6 @@ const Register = () => {
     },
   });
 
-  // const handleEmailChange = () => {
-  //   setEmailCreate(e.target.value);
-  // }
-
-  // const handleNameChange = () => {
-  //   setNameCreate(e.target.value);
-  // }
-
-  // const handlePasswordChange = () => {
-  //   setPasswordCreate(e.target.value);
-  // }
-
-  // const handlePasswordRepeatChange = () => {
-  //   setPasswordRepeatCreate(e.target.value);
-  // }
-
-  // const handleRoleChange = () => {
-  //   setRoleCreate(e.target.value);
-  // }
-
-  // const handleProfilePictureUrlChange = () => {
-  //   setProfilePictureUrlCreate(e.target.value);
-  // }
-
-  // const handlePhoneNumberChange = () => {
-  //   setPhoneNumberCreate(e.target.value);
-  // }
 
   return (
     <div>

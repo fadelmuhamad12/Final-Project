@@ -38,18 +38,6 @@ const NavigationBar = () => {
     setShowProfile(false);
   };
 
-  // const logoutclicked = () => {
-  //   axiosInstance.get("/logout", {
-  //     headers: {
-  //       apiKey: apiKeys,
-  //       Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-  //     },
-  //   });
-  //   setToken(null);
-  //   localStorage.removeItem("token", token);
-  //   localStorage.removeItem("datas");
-  //   alert("Logout Success");
-  // };
 
   const handleLogout = () => {
     axiosInstance.get("/logout", {
@@ -60,7 +48,11 @@ const NavigationBar = () => {
     });
     localStorage.removeItem("token", token);
     localStorage.removeItem("datas");
+    // localStorage.removeItem("idCategories");
+    // localStorage.removeItem("nameCategories");
+    // localStorage.removeItem("imageCategories")
     alert("Logout Success");
+    window.location.reload()
     // localStorage.clear();
     // window.location.reload();
   };
