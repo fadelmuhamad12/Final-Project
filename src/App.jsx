@@ -11,6 +11,7 @@ import CategoriesAdmin from "./components/CategoriesAdmin";
 import ActivitiesAdmin from "./components/ActivitiesAdmin";
 import BannersAdmin from "./components/BannersAdmin";
 import PromosAdmin from "./components/PromosAdmin";
+import UserAdmin from "./components/UserAdmin";
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route exact path='/ActivitiesAdmin' Component={ActivitiesAdmin}></Route>
         <Route exact path='/BannersAdmin' Component={BannersAdmin}></Route>
         <Route exact path='/PromosAdmin' Component={PromosAdmin}></Route>
+        <Route exact path='/UserAdmin' Component={UserAdmin}></Route>
 
 
 

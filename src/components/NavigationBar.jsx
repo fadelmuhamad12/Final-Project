@@ -12,17 +12,18 @@ import axiosInstance from "../api/axios";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 const NavigationBar = () => {
+  const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
-  const [role, setRole] = useState("")
+  const [role, setRole] = useState("");
   const [number, setNumber] = useState("");
   const [avatar, setAvatar] = useState("");
   const [showProfile, setShowProfile] = useState(false);
-
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const isLogin = JSON.parse(localStorage.getItem("datas"));
 
   // Modal Login
@@ -37,9 +38,31 @@ const NavigationBar = () => {
     setShowProfile(false);
   };
 
+  // const logoutclicked = () => {
+  //   axiosInstance.get("/logout", {
+  //     headers: {
+  //       apiKey: apiKeys,
+  //       Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+  //     },
+  //   });
+  //   setToken(null);
+  //   localStorage.removeItem("token", token);
+  //   localStorage.removeItem("datas");
+  //   alert("Logout Success");
+  // };
+
   const handleLogout = () => {
-    localStorage.clear();
-    window.location.reload();
+    axiosInstance.get("/logout", {
+      headers: {
+        apiKey: apiKeys,
+        Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+      },
+    });
+    localStorage.removeItem("token", token);
+    localStorage.removeItem("datas");
+    alert("Logout Success");
+    // localStorage.clear();
+    // window.location.reload();
   };
 
   // const formik = useFormik({
@@ -113,6 +136,9 @@ const NavigationBar = () => {
         )
         .then((response) => {
           alert("Login Berhasil");
+          const token = response.data.token;
+          setToken(token);
+          localStorage.setItem("token", token);
           localStorage.setItem("datas", JSON.stringify(response.data));
           window.location.reload();
           console.log(response);
@@ -135,7 +161,7 @@ const NavigationBar = () => {
       setName(parsedData.data.name);
       setNumber(parsedData.data.number);
       setAvatar(parsedData.data.profilePictureUrl);
-      setRole(parsedData.data.role)
+      setRole(parsedData.data.role);
     }
   });
 
@@ -288,25 +314,26 @@ const NavigationBar = () => {
             <Modal.Title className="titlePremiumProfile">Welcome !</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-           
             <div className="profile">
               <Image src={"avatar"} className="img-profile" />
               <div className="username">Name: {name}</div>
               <div className="username">Role: {role}</div>
-              {isLogin && role === "admin" || "Admin" ? (
-                 <DropdownButton
-                 id="dropdown-basic-button"
-                 title="Kelola Travel"
-               >
-                     <div className="">
-                     <Link to="/CategoriesAdmin">Kelola Kategori </Link>
-                     <Link to="/ActivitiesAdmin">Kelola Activities </Link>
-                     <Link to="/BannersAdmin">Kelola Banner</Link>
-                     <Link to="/PromosAdmin">Kelola Promo </Link>
-
-                     </div>
-               </DropdownButton>
-              ) : ("Bukan Admin") }
+              {(isLogin && role === "admin") || "Admin" ? (
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  title="Kelola Travel"
+                >
+                  <div className="">
+                    <Link to="/CategoriesAdmin">Kelola Kategori </Link>
+                    <Link to="/ActivitiesAdmin">Kelola Activities </Link>
+                    <Link to="/BannersAdmin">Kelola Banner</Link>
+                    <Link to="/PromosAdmin">Kelola Promo </Link>
+                    <Link to="/UserAdmin">Kelola User </Link>
+                  </div>
+                </DropdownButton>
+              ) : (
+                "Bukan Admin"
+              )}
               {/* <DropdownButton
                 id="dropdown-basic-button"
                 title="Kelola Travel"
