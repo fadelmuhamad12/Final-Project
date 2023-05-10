@@ -4,16 +4,14 @@ import Table from "react-bootstrap/Table";
 import { Card, Form, Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
-
 const UserAdmin = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [Datas, setDatas] = useState([]);
-  const [loggedUsers, setLoggedUsers] = useState([]);
   const [modal, showModal] = useState(false);
   const [name, setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [profilePicture, setProfilePicture] = useState ("");
-  const [phoneNumber, setPhoneNumber] = useState("")
+  const [email, setEmail] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const fetchGetAllUser = async () => {
     try {
@@ -25,6 +23,7 @@ const UserAdmin = () => {
       });
       //   console.log(getAllUser.data.data);
       setDatas(getAllUser.data.data);
+      fetchLoggedUser();
     } catch (error) {
       console.log(error);
     }
@@ -32,33 +31,41 @@ const UserAdmin = () => {
 
   const fetchLoggedUser = async () => {
     try {
-      const setLoggedUsers = await axiosInstance.get("/user", {
-        headers: {
-          apiKey: apiKeys,
-          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-        },
-      });
+      const setLoggedUsers = await axiosInstance
+        .get("/user", {
+          headers: {
+            apiKey: apiKeys,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+          },
+        })
+        .then(() => {
+          console.log(setLoggedUsers.data);
+        });
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
   const updateProfile = (e) => {
     e.preventDefault();
-        axiosInstance.post('/upddate-profile', {
-      headers: {
-        apiKey: apiKeys,
-        Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-      }
-    }).then(()=>{ 
-      alert("Profile Updated");
-      window.location.reload();
-      fetchGetAllUser();
-      handleShowModal();
-    })
-  }
+    axiosInstance
+      .post("/update-profile", {
+        name,
+        email,
+        profilePicture,
+        phoneNumber,
+      },{
+        headers: {
+          apiKey: apiKeys,
+          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+        },
+      })
+      .then(() => {
+        alert("Profile Updated");
+        fetchGetAllUser();
+        handleShowModal();
+      });
+  };
 
   const handleShowModal = () => {
     showModal(true);
@@ -70,7 +77,6 @@ const UserAdmin = () => {
 
   useEffect(() => {
     fetchGetAllUser();
-    fetchLoggedUser();
   }, []);
 
   return (
@@ -89,7 +95,7 @@ const UserAdmin = () => {
               <th colSpan={2}>Manage</th>
             </tr>
           </thead>
-          {Datas.slice(0, 5).map((Data) => {
+          {Datas.slice(10, 15).map((Data) => {
             return (
               <tbody key={Data.id}>
                 <tr>
@@ -105,10 +111,10 @@ const UserAdmin = () => {
                   </td>
                   <td>{Data.phoneNumber}</td>
                   <td>
-                    <button onClick={()=> updateProfile()}>Edit</button>
+                    <button onClick={() => updateProfile()}>Edit</button>
                   </td>
                   <td>
-                    <button>Delete</button>
+                    <button>Update Role</button>
                   </td>
                 </tr>
               </tbody>
@@ -184,7 +190,7 @@ const UserAdmin = () => {
                   type="text"
                   id="profilePicture"
                   name="profilePicture"
-                  onChange={(e) => setprofilePicture(e.target.value)}
+                  onChange={(e) => setProfilePicture(e.target.value)}
                   value={profilePicture}
                 />
                 <label htmlFor="profilePicture">profilePicture</label>
@@ -195,12 +201,12 @@ const UserAdmin = () => {
                   placeholder=""
                   id="phoneNumber"
                   name="phoneNumber"
-                  onChange={(e) => setphoneNumber(e.target.value)}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                   value={phoneNumber}
                 />
                 <label htmlFor="phoneNumber">phoneNumber</label>
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit" onClick={updateProfile}>Submit</button>
             </form>
           </div>
         </Modal.Body>

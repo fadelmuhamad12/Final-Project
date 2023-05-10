@@ -14,6 +14,7 @@ import PromosAdmin from "./components/PromosAdmin";
 import UserAdmin from "./components/UserAdmin";
 import DashboardAdmin from "./components/DashboardAdmin";
 import HighlightCategory from "./components/HighlightCategory";
+import ActivityAdmin from "./components/ActivityAdmin";
 
 
 
@@ -39,6 +40,8 @@ function App() {
         <Route exact path='/BannersAdmin' Component={BannersAdmin}></Route>
         <Route exact path='/PromosAdmin' Component={PromosAdmin}></Route>
         <Route exact path='/UserAdmin' Component={UserAdmin}></Route>
+        <Route exact path='/ActivityAdmin' Component={ActivityAdmin}></Route>
+
 
 
 

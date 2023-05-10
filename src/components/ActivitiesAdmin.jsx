@@ -4,11 +4,25 @@ import { Col, Button } from "react-bootstrap";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import Table from "react-bootstrap/Table";
+import Modal from "react-bootstrap/Modal";
 
 const ActivitiesAdmin = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [activities, setActivities] = useState([]);
   const [modal, setModal] = useState(false);
+  const [id, setId] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageUrls, setImageUrls] = useState("");
+  const [price, setPrice] = useState("");
+  const [priceDiscount, setPriceDiscount] = useState("");
+  const [rating, setRating] = useState("");
+  const [totalReviews, setTotalReviews] = useState("");
+  const [facilities, setFacilities] = useState("");
+  const [address, setAddress] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [locationMaps, setLocationMaps] = useState("")
 
   const fetchActivities = async () => {
     try {
@@ -23,6 +37,37 @@ const ActivitiesAdmin = () => {
       console.log(error);
     }
   };
+
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    axiosInstance.post(`update-activity/${id}`, {
+      categoryId,
+      title,
+      description,
+      imageUrls,
+      price,
+      priceDiscount,
+      rating,
+      totalReviews,
+      facilities,
+      address,
+      province,
+      city,
+      locationMaps,
+    }, {
+      headers: {
+        apiKey: apiKeys,
+        Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+      }
+    }).then(()=> {
+      alert("Update Success");
+      window.location.reload();
+      fetchActivities();
+    }).catch((error)=> {
+      console.log(error);
+    })
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -72,6 +117,30 @@ const ActivitiesAdmin = () => {
     },
   });
 
+
+  const fetchActivityById = async (id) => {
+    const activityById = await axiosInstance.get(`acitivy/${id}`,{
+      headers: {
+        apiKey: apiKeys,
+      }
+    })
+    setId(activityById.data.data.categoryId);
+    setTitle(activityById.data.data.title);
+    setDescription(categoryId.data.data.description);
+    setImageUrls(categoryId.data.data.imageUrls);
+    setPrice(categoryId.data.data.price);
+    setPriceDiscount(categoryId.data.data.price_discount);
+    setRating(categoryId.data.data.rating);
+    setTotalReviews(categoryId.data.data.total_reviews);
+    setFacilities(categoryId.data.data.facilities);
+    setAddress(categoryId.data.data.address);
+    setProvince(categoryId.data.data.province);
+    setCity(categoryId.data.data.city);
+    setLocationMaps(categoryId.data.data.location_maps);
+
+    showModal();
+  }
+
   const showModal = () => {
     setModal(true);
   };
@@ -86,6 +155,7 @@ const ActivitiesAdmin = () => {
 
   return (
     <>
+      {/* TABEL */}
       <div className="coverCategoriesAdmin mt-5">
         <Table striped bordered hover>
           <thead>
@@ -103,6 +173,7 @@ const ActivitiesAdmin = () => {
               <th>province</th>
               <th>city</th>
               <th>location_maps</th>
+              <th colSpan={2}>Action</th>
             </tr>
           </thead>
           {activities.map((activity) => {
@@ -124,6 +195,12 @@ const ActivitiesAdmin = () => {
                   <td>{activity.province}</td>
                   <td>{activity.city}</td>
                   <td>maps</td>
+                  <td>
+                    <button>Edit</button>
+                  </td>
+                  <td>
+                    <button>Delete</button>
+                  </td>
                 </tr>
               </tbody>
             );
@@ -291,12 +368,155 @@ const ActivitiesAdmin = () => {
             <label htmlFor="location_maps">location_maps</label>
           </div>
 
-
           <Button variant="primary" type="submit">
             Submit
           </Button>
         </form>
       </div>
+
+      {/* MODAL UPDATE */}
+      {/* <Modal
+        show={modal}
+        onHide={closeModal}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="cardUpdateCategoriesAdmin">
+            <span className="title">Update Kategori</span>
+
+            <form className="form">
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
+                <label htmlFor="name">Nama Kategori</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  id="imageUrl"
+                  name="imageUrl"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  value={imageUrl}
+                />
+                <label htmlFor="imageUrl">Img Url</label>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
     </>
   );
 };

@@ -61,8 +61,8 @@ const PromosAdmin = () => {
       promo_code: "",
     },
     validationSchema: Yup.object({
-      promo_discount_price: Yup.number().integer().required(),
-      minimum_claim_price: Yup.number().integer().required(),
+      promo_discount_price: Yup.number().nullable().required(),
+      minimum_claim_price: Yup.number().nullable().required(),
     }),
 
     onSubmit: (values) => {
@@ -121,8 +121,8 @@ const PromosAdmin = () => {
       imageUrl,
       terms_condition,
       promo_code,
-      promo_discount_price,
-      minimum_claim_price,
+      promo_discount_price: parseInt(promo_discount_price),
+      minimum_claim_price: parseInt(minimum_claim_price),
     }, {
       headers: {
         apiKey: apiKeys,
@@ -160,10 +160,9 @@ const PromosAdmin = () => {
               <th>Title</th>
               <th>Description</th>
               <th>Image Url</th>
+              <th>Terms Condition</th>
               <th>Discount Price</th>
               <th>Minimum Claim Price</th>
-              <th>Terms Condition</th>
-
               <th>Promo Code</th>
               <th colSpan={2}>Action</th>
             </tr>
@@ -178,6 +177,7 @@ const PromosAdmin = () => {
                   <td>
                     <img src={promo.imageUrl} style={{ width: "100px" }} />
                   </td>
+                  <td>{promo.terms_condition}</td>
                   <td>{promo.promo_discount_price}</td>
                   <td>{promo.minimum_claim_price}</td>
                   <td>{promo.promo_code}</td>

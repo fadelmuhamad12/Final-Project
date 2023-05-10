@@ -7,7 +7,7 @@ const Higlight = () => {
       <h1>It’s A Big World <br/> 
       Out There,Go <br/>Explore</h1>
       <h4 className='text-white'>Never Stop Exploring The World</h4>
-      <button>Book Now</button>
+      {/* <button>Book Now</button> */}
  
     </div>
   )
