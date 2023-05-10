@@ -138,7 +138,6 @@ const CategoriesAdmin = () => {
         }
       )
       .then(() => {
-      
         alert("category updated");
         window.location.reload();
         fetchCategories();
@@ -192,7 +191,7 @@ const CategoriesAdmin = () => {
                     </button>
                   </td>
                   <td>
-                    <button onClick={() => fetchCategoriesById(category.id)}> Update</button>
+                    <button onClick={() => fetchCategoriesById(category.id)}>Edit</button>
                   </td>
                 </tr>
               </tbody>
