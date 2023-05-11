@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Griffy&family=Montserrat:ital,wght@0,100;0,400;1,600&family=Open+Sans:wght@700&family=Poppins:wght@100;400;600&family=Work+Sans:wght@500&display=swap");
+
 .FullBg {
   background-image: url(./assets/background2.jpg);
   background-repeat: none;
@@ -13,17 +15,10 @@
   margin-top: 8rem;
   font-weight: bold;
   font-size: 50px;
+
 }
 
-.Main-higlight button {
-  color: white;
-  background-color: red;
-  border-radius: 25px;
-  border: none;
-  padding: 20px;
-  font-weight: bold;
-  margin: 3rem 0 0 7rem;
-}
+
 
 .Main-higlight h4 {
   color: white;
@@ -43,6 +38,11 @@ a.navLink .navbar-nav {
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+.profile-nav {
+  color: #27408b;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
 .navbar-nav a:hover {
@@ -102,25 +102,132 @@ a.mt-2.nav-link {
   width: 100%;
 }
 
-
-Button#dropdown-basic-button.dropdown-toggle.btn.btn-primary  {
+Button#dropdown-basic-button.dropdown-toggle.btn.btn-primary {
   background: transparent;
   border: none;
   color: #000;
+}
+/* Modal Profile */
+.titlePremiumProfile {
+  margin-left: 140px;
+}
+
+img.img-profile {
+  width: 100px;
+  margin-left: 180px;
+  border-radius: 20px;
+}
+
+.buttonAdmin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  left: 140px;
+  margin-bottom: 20px;
+  top: 10px;
+  height: 36px;
+  width: 180px;
+  border: none;
+  background: #5e41de33;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.lable {
+  line-height: 20px;
+  font-size: 17px;
+  color: #5d41de;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.buttonAdmin:hover {
+  background: #5e41de4d;
+}
+
+.buttonAdmin:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* -----------NAVBAR END ------------- */
 
 /*--------------- Promo Cards ----------*/
+.fullCoverPromoAndText {
+  width: 90%;
+  height: 360px;
+  /* background-color: #212121; */
+  border-radius: 20px;
+  margin: 40px auto 0 auto;
+  color: black;
+}
+.fullCoverPromoAndText h3 {
+  margin-top: 9rem;
+  margin-left: 2rem;
+}
 .fullCoverPromo {
-  background-color: rgb(245, 243, 243);
   width: 75%;
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button.slick-arrow.slick-prev::before {
+  color: black;
+}
+
+button.slick-arrow.slick-next::before {
+  color: black;
+}
+.fullCoverKategori {
+  /* background-color: rgb(235, 233, 233); */
+  width: 80%;
   /* height: 400px;
-  justify-content: center; */
+    justify-content: center; */
   border-radius: 50px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
+}
+.fullCoverKategori h2 {
+  margin-left: 30px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  color: black;
+}
+
+.fullCoverBanner {
+  /* background-color: rgb(235, 233, 233); */
+  width: 80%;
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.fullCoverBanner h2 {
+  margin-left: 30px;
+}
+.fullCoverActivity {
+    background-color: rgb(235, 233, 233);
+    width: 80%;
+    /* height: 400px;
+      justify-content: center; */
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
 }
 
 .imgPromo {
@@ -129,6 +236,8 @@ Button#dropdown-basic-button.dropdown-toggle.btn.btn-primary  {
 
 div.card {
   border: none;
+  box-shadow: rgb(80, 79, 79) 5px 2px 5px;
+  border-radius: 25px;
 }
 
 div.card-title.h5 {
@@ -138,10 +247,13 @@ div.card-title.h5 {
 .promoText {
   color: black;
   margin-left: 30px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
 }
 
 .coverPromoCards {
   margin-top: 15px;
+
 }
 
 .flip-card {
@@ -191,7 +303,7 @@ div.card-title.h5 {
 .flip-card-front {
   background: linear-gradient(
     120deg,
-    rgb(109, 211, 168) 60%,
+    rgb(151, 212, 187) 60%,
     rgb(255, 231, 222) 88%,
     rgb(255, 211, 195) 40%,
     rgba(214, 106, 106, 0.603) 48%
@@ -292,6 +404,17 @@ button:hover .circle .icon.arrow {
 button:hover .button-text {
   color: #fff;
 }
+.promoCodeCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p.promoCodeCard {
+  color: #27408b;
+  font-weight: bold;
+  margin-left: auto;
+}
 
 /*--------------- Promo Cards ends ----------*/
 
@@ -303,12 +426,259 @@ button:hover .button-text {
 .activitiesText {
   margin-top: 9rem;
   text-align: center;
-  margin-inline: 50px;
+  /* margin-inline: 10px; */
+}
+
+.r-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.r-Head {
+  margin-bottom: 2rem;
+}
+
+.judulCard {
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.textCard {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.r-card {
+  gap: 0.6rem;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: max-content;
+  margin: auto;
+  transition: all 300ms ease-in;
+}
+
+.r-card img {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 15rem;
+}
+
+.r-card>:nth-child(2)
+{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.r-card>:nth-child(3)
+{
+  font-size: 1.5rem;
+}
+
+
+.r-card>:nth-child(4)
+{
+  font-size: 0.7rem;
+  width: 15rem;
+}
+
+.r-card:hover{
+  scale: 1.025;
+  cursor: pointer;
+  background-color: linear-gradient (
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(136, 160, 255, 0.46) 217.91%
+  );
+  box-shadow: 0px 72px 49px -51px rgba(136, 160, 255, 0.21);
+}
+.swiper-horizontal {
+  overflow: visible;
+
+}
+.cardWrapper {
+  width: 70%;
+  /* background-color: #212121; */
+  margin: 5rem auto ;
+}
+
+.r-buttons {
+  position: absolute;
+  gap: 4rem;
+  top: -4rem;
+  right: 0;
+}
+
+.r-buttons button {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.8rem;
+  color: blue;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.r-buttons >:nth-child(1) 
+{
+  background-color: #EEEEFF;
+}
+
+.r-buttons >:nth-child(2) 
+{
+  background-color: #EEEEFF;
+ /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25) ; */
 }
 
 /* -------- Activities Cards End--------------- */
 
 /* ------------------- REGISTER PAGES----------------------- */
+
+.FullRegisterPage {
+  width: 90%;
+  height: 90vh;
+  background-color: #e7e7e7;
+  box-shadow: #282936 2px 2px 2px 2px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 50px;
+  margin: 20px auto 20px auto;
+}
+
+.left-side {
+  background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  /* background-color: #212121; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  aspect-ratio: 1 / 1;
+  width: 150%;
+  height: 90vh;
+}
+.left-side img {
+  margin-top: 40px;
+  width: 100%;
+  height: 90.5vh;
+  border-radius: 50px;
+}
+.left-side-title h3 {
+  position: absolute;
+  width: 510px;
+  height: 186px;
+  left: 180px;
+  top: 220px;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 62px;
+}
+.left-side-signup h5 {
+  position: absolute;
+  width: 510px;
+  left: 190px;
+  top: 420px;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 62px;
+}
+.left-side-or h5 {
+  position: absolute;
+  width: 510px;
+  left: 300px;
+  top: 460px;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 62px;
+}
+
+.left-side-button button {
+  position: absolute;
+  width: 510px;
+  left: 60px;
+  top: 500px;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 62px;
+  /* background: #000; */
+}
+
+button.button {
+  width: 200px;
+  margin-left: 155px;
+  margin-top: 20px;
+  height: 50px;
+}
+
+.button {
+  position: relative;
+  background-color: transparent;
+  color: #e8e8e8;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 10px;
+  width: 50px;
+  height: 60px;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(51, 51, 51, 0.2);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button::before {
+  content: "Now!";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(135deg, #7b4397, #dc2430);
+  transform: translate(0%, 90%);
+  z-index: 99;
+  position: relative;
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button::after {
+  content: "Getting Started";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-origin: top;
+  transform: translate(0%, -100%);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button:hover::before {
+  transform: translate(0%, 0%);
+}
+
+.button:hover::after {
+  transform: translate(0%, -200%);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  scale: 0.95;
+}
+
 .singup {
   color: #000;
   text-transform: uppercase;
@@ -423,12 +793,11 @@ button:hover .button-text {
 
 /* ------------------- REGISTER PAGES END----------------------- */
 
-
 /* --------------- CATEGORIES ADMIN PAGES----------------------  */
-div.coverCategoriesAdmin{
+div.coverCategoriesAdmin {
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardUpdateCategoriesAdmin {
@@ -464,7 +833,7 @@ div.coverCategoriesAdmin{
   top: -10px;
   left: 10px;
   background-color: #fff;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .form .group input,
@@ -478,7 +847,8 @@ div.coverCategoriesAdmin{
   background-color: transparent;
 }
 
-.form .group input:placeholder-shown+ label, .form .group textarea:placeholder-shown +label {
+.form .group input:placeholder-shown + label,
+.form .group textarea:placeholder-shown + label {
   top: 10px;
   background-color: transparent;
 }
@@ -488,7 +858,8 @@ div.coverCategoriesAdmin{
   border-color: #3366cc;
 }
 
-.form .group input:focus+ label, .form .group textarea:focus +label {
+.form .group input:focus + label,
+.form .group textarea:focus + label {
   top: -10px;
   left: 10px;
   background-color: #fff;
@@ -517,19 +888,6 @@ div.coverCategoriesAdmin{
   background-color: #27408b;
 }
 
-
-
-
-/* -------------- CATEGORIES ADMIN PAGES END -------------------- */
-
-table, th, td {
-  border: 1px solid rgb(0, 0, 0);
-  border-collapse: collapse;
-}
-th, td {
-
-}
-
 /* --------------- HIGHLIGHT MASING MASING PAGES------------------- */
 .fullCoverHighlight {
   width: 80%;
@@ -540,22 +898,125 @@ th, td {
   align-items: center;
   background-color: #e6e6e6;
   border-radius: 50px;
-
-
 }
-.CoverHighlight{
+.CoverHighlight {
   width: 80%;
   justify-content: center;
   display: flex;
   align-items: center;
   border-radius: 50px;
-
-  
 }
 
 /* DASHBOARD ADMIN */
 .JudulDashboard {
- display: flex;
- justify-content: center;
- margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+
+/* TES DESTINASI */
+.destination {
+  margin: 4rem 6rem;
+}
+
+.destination h1 {
+  font-size: 3rem;
+}
+
+.first-desc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4,6rem;
+}
+.first-descdua {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4,6rem;
+}
+
+.desc-text {
+  width: 45%;
+  text-align: start;
+  font-size: 1.1rem ;
+  text-align: justify;
+}
+
+.desc-text h2 {
+  padding-bottom: 1rem;
+}
+
+.image {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  z-index: -99;
+}
+
+.image img {
+  width: 49%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: -1px 1px 62px -18 rgb(0, 0, 0, 0.19);
+}
+
+.image img:nth-child(2) {
+  position: absolute;
+  top: -10px;
+  right: 0;
+}
+
+
+/*-------------------- DAHBOARD ADMIN -----------------------*/
+.dashboardWrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:850px) {
+  .destination {
+    margin: 4rem 2rem;
+  }
+
+  .first-desc {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 2.5rem;
+  }
+
+  .desc-text {
+    width: 100%;
+    text-align: justify;
+  }
+  .first-descdua {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.5rem;
+  }
+
+  .image {
+    width: 100%;
+    margin: 1.8rem 0;
+  }
+  .image img {
+    height: 250px;
+  }
+  
 }

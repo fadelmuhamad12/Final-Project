@@ -4,15 +4,45 @@ import axiosInstance from "../api/axios";
 import { useEffect, useState } from "react";
 import Slider from "react-slick/lib/slider";
 import { Card, Image, Col } from "react-bootstrap";
+import NextArrow from "../components/NextArrow";
+import PrevArrow from "../components/PrevArrow";
 
 const Banner = () => {
   const settings = {
-    className: "center",
-    centerMode: true,
-    infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
+    dots: true,
+    infinite: false,
     speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   const [banners, setBanners] = useState([]);
@@ -31,49 +61,43 @@ const Banner = () => {
     }
   };
 
-
-  
-
   useEffect(() => {
     fetchBanner();
   }, []);
 
   return (
-    // <div>
-    //   <h2>Banner</h2>
-    //   <Slider {...settings}>
-    //   {banners.slice(0,4).map((banner) => {
-    //     return (
-    //       <div key={banner.id}>
-    //         <h4>{banner.name}</h4>
-    //         <p>{banner.id}</p>
-    //         <img src={banner.imageUrl} alt="" />
-    //       </div>
-    //     );
-    //   })}
+    <>
+       <div  className="fullCoverKategori ">
+    <h2> Kategori yang mungkin cocok buat kamu </h2>
+        <Slider {...settings}>
+          {banners.map((banner)=> {
+            return(
+              <div key={banner.id} className="coverCategories">
+              <Col
+                xs={6}
+                s={4}
+                sm={4}
+                md={4}
+                lg={4}
+                xl={4}
+                className="justify-content-center text-align-center "
+              >
+                <Card style={{ width: "250px", margin: "10px" }}>
+                  <Card.Img variant="top" src={banner.imageUrl} />
+                  <Card.Body>
+                    <Card.Title>{banner.name}</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </div>
 
-    //   </Slider>
-    // </div>
-
-    <div className="fullCoverPromo d-flex">
-      <h3 className="activitiesText">Rekomendasi Tempat <br/> Untukmu</h3>
-      {banners.slice(0, 2).map((banner) => {
-        return (
-         
-            <Col key={banner.id}>
-             <div className="coveraActivitiesCards">
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={banner.imageUrl} />
-                <Card.Body>
-                  <Card.Title>{banner.name}</Card.Title>
-                </Card.Body>
-              </Card>
-              </div>
-            </Col>
           
-        );
-      })}
-    </div>
+            )
+          })}
+  
+        </Slider>
+      </div>
+    </>
   );
 };
 

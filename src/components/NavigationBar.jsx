@@ -16,7 +16,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useNavigate } from "react-router-dom";
 
-
 const NavigationBar = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [show, setShow] = useState(false);
@@ -30,12 +29,9 @@ const NavigationBar = () => {
 
   const navigate = useNavigate();
 
-
-
   // Modal Login
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   // Modal Profile
   const handleProfileShow = () => {
@@ -44,7 +40,6 @@ const NavigationBar = () => {
   const handleProfileClose = () => {
     setShowProfile(false);
   };
-
 
   const handleLogout = () => {
     axiosInstance.get("/logout", {
@@ -59,8 +54,8 @@ const NavigationBar = () => {
     // localStorage.removeItem("nameCategories");
     // localStorage.removeItem("imageCategories")
     alert("Logout Success");
-    navigate("/")
-    
+    navigate("/");
+    window.location.reload();
   };
 
   // const formik = useFormik({
@@ -184,23 +179,17 @@ const NavigationBar = () => {
                 <Link to>About</Link>
               </Nav>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              {isLogin ? (
-                <div className="text-white mt-2" onClick={handleProfileShow}>
-                  Profile
-                </div>
-              ) : (
-                <Nav.Link className="mt-2" onClick={handleShow}>
-                  Login
-                </Nav.Link>
-              )}
-            </Form>
+
+            {isLogin ? (
+              <div className="profile-nav mt-2" onClick={handleProfileShow}>
+                Profile
+              </div>
+            ) : (
+              <Nav.Link className="mt-2" onClick={handleShow}>
+                Login
+              </Nav.Link>
+            )}
+
             <div className="btn-register">
               <Link to="/Register">Register</Link>
             </div>
@@ -309,41 +298,46 @@ const NavigationBar = () => {
         {/* Modal Profile */}
         <Modal show={showProfile} onHide={handleProfileClose}>
           <Modal.Header closeButton>
-            <Modal.Title className="titlePremiumProfile">Welcome, {name}!</Modal.Title>
+            <Modal.Title className="titlePremiumProfile">
+              Welcome, {name}!
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="profile">
-              <Image src={"avatar"} className="img-profile" />
+              <Image src={avatar} className="img-profile" />
               <div className="username">Name: {name}</div>
               <div className="username">Role: {role}</div>
               {(isLogin && role === "admin") || "Admin" ? (
-
-                <Link to ="/DashboardAdmin"> Dashboard Admin</Link>
-                // <DropdownButton
-                //   id="dropdown-basic-button"
-                //   title="Kelola Travel"
-                // >
-                //   <div className="">
-                //     <Link to="/CategoriesAdmin">Kelola Kategori </Link>
-                //     <Link to="/ActivitiesAdmin">Kelola Activities </Link>
-                //     <Link to="/BannersAdmin">Kelola Banner</Link>
-                //     <Link to="/PromosAdmin">Kelola Promo </Link>
-                //     <Link to="/UserAdmin">Kelola User </Link>
-                //   </div>
-                // </DropdownButton>
+                <Link to="/DashboardAdmin">
+                  {" "}
+                  <button className="buttonAdmin">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={20}
+                      viewBox="0 0 20 20"
+                      height={20}
+                      fill="none"
+                      className="svg-icon"
+                    >
+                      <g
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        stroke="#5d41de"
+                      >
+                        <circle r="2.5" cy={10} cx={10} />
+                        <path
+                          fillRule="evenodd"
+                          d="m8.39079 2.80235c.53842-1.51424 2.67991-1.51424 3.21831-.00001.3392.95358 1.4284 1.40477 2.3425.97027 1.4514-.68995 2.9657.82427 2.2758 2.27575-.4345.91407.0166 2.00334.9702 2.34248 1.5143.53842 1.5143 2.67996 0 3.21836-.9536.3391-1.4047 1.4284-.9702 2.3425.6899 1.4514-.8244 2.9656-2.2758 2.2757-.9141-.4345-2.0033.0167-2.3425.9703-.5384 1.5142-2.67989 1.5142-3.21831 0-.33914-.9536-1.4284-1.4048-2.34247-.9703-1.45148.6899-2.96571-.8243-2.27575-2.2757.43449-.9141-.01669-2.0034-.97028-2.3425-1.51422-.5384-1.51422-2.67994.00001-3.21836.95358-.33914 1.40476-1.42841.97027-2.34248-.68996-1.45148.82427-2.9657 2.27575-2.27575.91407.4345 2.00333-.01669 2.34247-.97026z"
+                          clipRule="evenodd"
+                        />
+                      </g>
+                    </svg>
+                    <span className="lable">Dashboard</span>
+                  </button>
+                </Link>
               ) : (
-                "Bukan Admin"
+                " "
               )}
-              {/* <DropdownButton
-                id="dropdown-basic-button"
-                title="Kelola Travel"
-              >
-                    <div className="">
-                    <Link to="/CategoriesAdmin">Kelola Banner </Link>
-                    <Link to="/CategoriesAdmin">Kelola Banner </Link>
-                    <Link to="/CategoriesAdmin">Kelola Banner </Link>
-                    </div>
-              </DropdownButton> */}
             </div>
             <Button
               variant="danger"

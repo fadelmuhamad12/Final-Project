@@ -8,6 +8,10 @@ import Promo from "../Pages/Promo";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Activities from "../Pages/Activities";
+import TesPromo from "./TesPromo";
+import TesPromoDua from "./TesPromoDua";
+import CardBaru from "./CardBaru";
+import CategoryDua from "./CategoryDua";
 
 
 
@@ -21,9 +25,15 @@ const Home = () => {
      </div>
      <div >
        <Promo />
+       {/* <TesPromo />
+       <TesPromoDua /> */}
        <Categories />
-       <Banner/>
+       <CategoryDua />
+       {/* <Banner/> */}
        <Activities />
+       {/* <TesPromo /> */}
+       {/* <TesPromoDua /> */}
+       {/* <CardBaru /> */}
      </div>
      </>
  

@@ -2,13 +2,12 @@ import React from "react";
 import axiosInstance from "../api/axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useState, useEffect, } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
- 
+
   // Formik Register
   const formik = useFormik({
     initialValues: {
@@ -60,7 +59,7 @@ const Register = () => {
         .then((response) => {
           alert("register berhasil");
           console.log(response);
-          navigate("/")
+          navigate("/");
         })
         .catch((error) => {
           alert(error.message);
@@ -68,10 +67,29 @@ const Register = () => {
     },
   });
 
-
   return (
-    <div>
-      <div className="container d-flex justify-content-center align-item-center">
+    <div className="FullRegisterPage d-flex">
+      <div className="left-side">
+        <div className="left-side-title">
+          <h3>collection of the most beautiful places and experience</h3>
+        </div>
+        <div className="left-side-signup">
+          <h5>Sign Up To get the Benefit!</h5>
+          <br />
+        </div>
+        <div className="left-side-or">
+          <h5>Or</h5>
+          <br />
+        </div>
+        <div className="left-side-button">
+          <Link to="/">
+          <button className="button"></button>
+          </Link>
+          <br />
+        </div>
+      </div>
+
+      <div className="right container d-flex justify-content-center align-item-center ">
         <form onSubmit={formik.handleSubmit}>
           <div className="card">
             <a className="singup">Sign Up</a>
