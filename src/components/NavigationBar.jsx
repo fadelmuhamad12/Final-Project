@@ -14,6 +14,8 @@ import * as yup from "yup";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { useNavigate } from "react-router-dom";
+
 
 const NavigationBar = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
@@ -26,9 +28,14 @@ const NavigationBar = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const isLogin = JSON.parse(localStorage.getItem("datas"));
 
+  const navigate = useNavigate();
+
+
+
   // Modal Login
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
   // Modal Profile
   const handleProfileShow = () => {
@@ -52,9 +59,8 @@ const NavigationBar = () => {
     // localStorage.removeItem("nameCategories");
     // localStorage.removeItem("imageCategories")
     alert("Logout Success");
-    window.location.reload()
-    // localStorage.clear();
-    // window.location.reload();
+    navigate("/")
+    
   };
 
   // const formik = useFormik({

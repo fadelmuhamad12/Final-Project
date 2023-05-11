@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 
+
 const ActivitiesAdmin = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [activities, setActivities] = useState([]);
@@ -22,7 +23,7 @@ const ActivitiesAdmin = () => {
   const [address, setAddress] = useState("");
   const [province, setProvince] = useState("");
   const [city, setCity] = useState("");
-  const [locationMaps, setLocationMaps] = useState("")
+  const [locationMaps, setLocationMaps] = useState("");
 
   const fetchActivities = async () => {
     try {
@@ -38,43 +39,49 @@ const ActivitiesAdmin = () => {
     }
   };
 
-
   const handleUpdate = (e) => {
     e.preventDefault();
-    axiosInstance.post(`update-activity/${id}`, {
-      categoryId,
-      title,
-      description,
-      imageUrls,
-      price,
-      priceDiscount,
-      rating,
-      totalReviews,
-      facilities,
-      address,
-      province,
-      city,
-      locationMaps,
-    }, {
-      headers: {
-        apiKey: apiKeys,
-        Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-      }
-    }).then(()=> {
-      alert("Update Success");
-      window.location.reload();
-      fetchActivities();
-    }).catch((error)=> {
-      console.log(error);
-    })
-  }
+    axiosInstance
+      .post(
+        `update-activity/${id}`,
+        {
+          categoryId,
+          title,
+          description,
+          imageUrls,
+          price,
+          priceDiscount,
+          rating,
+          totalReviews,
+          facilities,
+          address,
+          province,
+          city,
+          locationMaps,
+        },
+        {
+          headers: {
+            apiKey: apiKeys,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+          },
+        }
+      )
+      .then(() => {
+        alert("Update Success");
+        window.location.reload();
+        fetchActivities();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const formik = useFormik({
     initialValues: {
       categoryId: "",
       title: "",
       description: "",
-      imageUrls: "",
+      imageUrls: [imageUrls],
       price: "",
       price_discount: "",
       rating: "",
@@ -112,21 +119,18 @@ const ActivitiesAdmin = () => {
           }
         )
         .then(() => {
-          alert("activity created!")
+          alert("activity created!");
           fetchActivities();
-          
-        })
-    
+        });
     },
   });
 
-
   const fetchActivityById = async (id) => {
-    const activityById = await axiosInstance.get(`acitivy/${id}`,{
+    const activityById = await axiosInstance.get(`acitivy/${id}`, {
       headers: {
         apiKey: apiKeys,
-      }
-    })
+      },
+    });
     setId(activityById.data.data.categoryId);
     setTitle(activityById.data.data.title);
     setDescription(categoryId.data.data.description);
@@ -142,7 +146,7 @@ const ActivitiesAdmin = () => {
     setLocationMaps(categoryId.data.data.location_maps);
 
     showModal();
-  }
+  };
 
   const showModal = () => {
     setModal(true);
@@ -150,6 +154,30 @@ const ActivitiesAdmin = () => {
 
   const closeModal = () => {
     setModal(false);
+  };
+
+  const handleImageUrl = async (e) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+      const getImageUrl = await axios.post(
+        `${base_url}/api/v1/upload-image`,
+        formData,
+        {
+          headers: {
+            apiKey: `${api_key}`,
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const imageUrls = getImageUrl.data.url;
+      setImageUrls(imageUrls);
+      console.log(imageUrls);
+    } catch (error) {
+      console.log(error.message);
+      alert("Failed!");
+    }
   };
 
   useEffect(() => {
@@ -255,9 +283,9 @@ const ActivitiesAdmin = () => {
             <input
               placeholder=""
               type="text"
-              id="imageUrls"
+              id= "imgaUrls"
               name="imageUrls"
-              onChange={formik.handleChange}
+              onChange={handleImageUrl}
               value={formik.values.imageUrls}
             />
             <label htmlFor="imageUrls">imageUrls</label>

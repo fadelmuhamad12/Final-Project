@@ -29,28 +29,28 @@ const UserAdmin = () => {
       const allUserId = getAllUser.data.data.map(({ id }) => id);
       localStorage.setItem("allUserId", JSON.stringify(allUserId));
       setAllUsersId(allUserId)
-      fetchLoggedUser();
+      // fetchLoggedUser();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchLoggedUser = async () => {
-    try {
-      const setLoggedUsers = await axiosInstance
-        .get("/user", {
-          headers: {
-            apiKey: apiKeys,
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-          },
-        })
-        .then(() => {
-          console.log(setLoggedUsers.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchLoggedUser = async () => {
+  //   try {
+  //     const setLoggedUsers = await axiosInstance
+  //       .get("/user", {
+  //         headers: {
+  //           apiKey: apiKeys,
+  //           Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         console.log(response.data);
+  //       });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const updateProfile = (e) => {
     e.preventDefault();
@@ -138,7 +138,7 @@ const UserAdmin = () => {
               <th colSpan={2}>Manage</th>
             </tr>
           </thead>
-          {Datas.slice(10, 15).map((Data) => {
+          {Datas.slice(35, 40).map((Data) => {
             return (
               <tbody key={Data.id}>
                 <tr>
@@ -167,7 +167,7 @@ const UserAdmin = () => {
       </div>
 
       {/* LOGGED USER */}
-      <div>
+      {/* <div>
         <h3>Logged User</h3>
         <Table striped bordered hover>
           <thead>
@@ -190,7 +190,7 @@ const UserAdmin = () => {
             </tr>
           </tbody>
         </Table>
-      </div>
+      </div> */}
 
       {/* MODAL EDIT */}
       <Modal
@@ -264,13 +264,43 @@ const UserAdmin = () => {
 
       {/* MODAL EDIT ROLE */}
       <div>
-        {/* {Datas.map((data)=> {
+        {Datas.map((data)=> {
           return (
+            <Modal show={modalRole} onHide={handleCloseModalRole} backdrop="static">
+            <Modal.Body>
+              <div className="cardUpdateCategoriesAdmin" >
+                <span className="title">Update Role</span>
+    
+                <form className="form"  onClick={()=> updateRoleUser(data.id)}>
+                  <div className="group">
+                    <input
+                      placeholder=""
+                      type="text"
+                      id={`role${data.id}`}
+                      name="role"
+                      onChange={(e) => setRole(e.target.value)}
+                      value={role}
+                    />
+                    <label htmlFor="role">Nama</label>
+                  </div>
+                  <button type="submit">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" >
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+         
             
 
           )
-        })} */}
-         <Modal show={modalRole} onHide={handleCloseModalRole} backdrop="static">
+        })}
+         {/* <Modal show={modalRole} onHide={handleCloseModalRole} backdrop="static">
         <Modal.Body>
           <div className="cardUpdateCategoriesAdmin" >
             <span className="title">Update Role</span>
@@ -280,14 +310,14 @@ const UserAdmin = () => {
                 <input
                   placeholder=""
                   type="text"
-                  id="role"
+                  id={`role${data.id}`}
                   name="role"
                   onChange={(e) => setRole(e.target.value)}
                   value={role}
                 />
                 <label htmlFor="role">Nama</label>
               </div>
-              <button type="submit">
+              <button type="submit" onClick={()=> updateRoleUser(data.id)}>
                 Submit
               </button>
             </form>
@@ -298,7 +328,7 @@ const UserAdmin = () => {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
      
       </div>
     </>
