@@ -552,3 +552,10 @@ th, td {
 
   
 }
+
+/* DASHBOARD ADMIN */
+.JudulDashboard {
+ display: flex;
+ justify-content: center;
+ margin-top: 25px;
+}

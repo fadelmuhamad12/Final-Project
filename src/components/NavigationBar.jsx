@@ -303,7 +303,7 @@ const NavigationBar = () => {
         {/* Modal Profile */}
         <Modal show={showProfile} onHide={handleProfileClose}>
           <Modal.Header closeButton>
-            <Modal.Title className="titlePremiumProfile">Welcome !</Modal.Title>
+            <Modal.Title className="titlePremiumProfile">Welcome, {name}!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="profile">
@@ -311,18 +311,20 @@ const NavigationBar = () => {
               <div className="username">Name: {name}</div>
               <div className="username">Role: {role}</div>
               {(isLogin && role === "admin") || "Admin" ? (
-                <DropdownButton
-                  id="dropdown-basic-button"
-                  title="Kelola Travel"
-                >
-                  <div className="">
-                    <Link to="/CategoriesAdmin">Kelola Kategori </Link>
-                    <Link to="/ActivitiesAdmin">Kelola Activities </Link>
-                    <Link to="/BannersAdmin">Kelola Banner</Link>
-                    <Link to="/PromosAdmin">Kelola Promo </Link>
-                    <Link to="/UserAdmin">Kelola User </Link>
-                  </div>
-                </DropdownButton>
+
+                <Link to ="/DashboardAdmin"> Dashboard Admin</Link>
+                // <DropdownButton
+                //   id="dropdown-basic-button"
+                //   title="Kelola Travel"
+                // >
+                //   <div className="">
+                //     <Link to="/CategoriesAdmin">Kelola Kategori </Link>
+                //     <Link to="/ActivitiesAdmin">Kelola Activities </Link>
+                //     <Link to="/BannersAdmin">Kelola Banner</Link>
+                //     <Link to="/PromosAdmin">Kelola Promo </Link>
+                //     <Link to="/UserAdmin">Kelola User </Link>
+                //   </div>
+                // </DropdownButton>
               ) : (
                 "Bukan Admin"
               )}

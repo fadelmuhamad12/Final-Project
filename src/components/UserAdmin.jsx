@@ -8,6 +8,9 @@ const UserAdmin = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [Datas, setDatas] = useState([]);
   const [modal, showModal] = useState(false);
+  const [modalRole, showModalRole] = useState(false);
+  const [allUsersId, setAllUsersId] = useState(JSON.parse(localStorage.getItem("allUserId")));
+  const [role, setRole] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
@@ -23,6 +26,9 @@ const UserAdmin = () => {
       });
       //   console.log(getAllUser.data.data);
       setDatas(getAllUser.data.data);
+      const allUserId = getAllUser.data.data.map(({ id }) => id);
+      localStorage.setItem("allUserId", JSON.stringify(allUserId));
+      setAllUsersId(allUserId)
       fetchLoggedUser();
     } catch (error) {
       console.log(error);
@@ -49,21 +55,50 @@ const UserAdmin = () => {
   const updateProfile = (e) => {
     e.preventDefault();
     axiosInstance
-      .post("/update-profile", {
-        name,
-        email,
-        profilePicture,
-        phoneNumber,
-      },{
-        headers: {
-          apiKey: apiKeys,
-          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+      .post(
+        "/update-profile",
+        {
+          name,
+          email,
+          profilePicture,
+          phoneNumber,
         },
-      })
+        {
+          headers: {
+            apiKey: apiKeys,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+          },
+        }
+      )
       .then(() => {
         alert("Profile Updated");
         fetchGetAllUser();
         handleShowModal();
+      });
+  };
+
+  const updateRoleUser = (id) => {
+    axiosInstance
+      .post(
+        `update-user-role/${id}`,
+        {
+          role,
+        },
+        {
+          headers: {
+            apiKey: apiKeys,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+          },
+        }
+      )
+      .then(() => {
+        alert("Update Role Success");
+        fetchGetAllUser();
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+        // alert("Failed");
       });
   };
 
@@ -72,6 +107,14 @@ const UserAdmin = () => {
   };
 
   const handleCloseModal = () => {
+    showModal(false);
+  };
+
+  const handleShowModalRole = () => {
+    showModalRole(true);
+  };
+
+  const handleCloseModalRole = () => {
     showModal(false);
   };
 
@@ -114,7 +157,7 @@ const UserAdmin = () => {
                     <button onClick={() => updateProfile()}>Edit</button>
                   </td>
                   <td>
-                    <button>Update Role</button>
+                    <button onClick={handleShowModalRole}>Update Role</button>
                   </td>
                 </tr>
               </tbody>
@@ -160,7 +203,7 @@ const UserAdmin = () => {
           <div className="cardUpdateCategoriesAdmin">
             <span className="title">Update Kategori</span>
 
-            <form className="form" >
+            <form className="form">
               <div className="group">
                 <input
                   placeholder=""
@@ -206,7 +249,9 @@ const UserAdmin = () => {
                 />
                 <label htmlFor="phoneNumber">phoneNumber</label>
               </div>
-              <button type="submit" onClick={updateProfile}>Submit</button>
+              <button type="submit" onClick={updateProfile}>
+                Submit
+              </button>
             </form>
           </div>
         </Modal.Body>
@@ -216,6 +261,46 @@ const UserAdmin = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* MODAL EDIT ROLE */}
+      <div>
+        {/* {Datas.map((data)=> {
+          return (
+            
+
+          )
+        })} */}
+         <Modal show={modalRole} onHide={handleCloseModalRole} backdrop="static">
+        <Modal.Body>
+          <div className="cardUpdateCategoriesAdmin" >
+            <span className="title">Update Role</span>
+
+            <form className="form">
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  id="role"
+                  name="role"
+                  onChange={(e) => setRole(e.target.value)}
+                  value={role}
+                />
+                <label htmlFor="role">Nama</label>
+              </div>
+              <button type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModalRole}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+     
+      </div>
     </>
   );
 };

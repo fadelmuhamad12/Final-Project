@@ -112,8 +112,11 @@ const ActivitiesAdmin = () => {
           }
         )
         .then(() => {
+          alert("activity created!")
           fetchActivities();
-        });
+          
+        })
+    
     },
   });
 

@@ -138,7 +138,7 @@ const BannersAdmin = () => {
               <th colSpan={2}>Action</th>
             </tr>
           </thead>
-          {banners.slice(11,20).map((banner)=> {
+          {banners.slice(1,20).map((banner)=> {
             return (
               <tbody key={banner.id}>
             <tr>

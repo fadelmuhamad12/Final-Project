@@ -161,7 +161,7 @@ const CategoriesAdmin = () => {
 
   return (
     <>
-      <NavigationBar />
+  
       <div className="coverCategoriesAdmin">
         <table border="1" width={1000}>
           <thead>

@@ -1,30 +1,44 @@
 import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import CategoriesAdmin from "./CategoriesAdmin";
+import BannersAdmin from "./BannersAdmin";
+import ActivityAdmin from "./ActivityAdmin"
+import PromosAdmin from "./PromosAdmin";
+import NavigationBar from "./NavigationBar";
+import UserAdmin from "./UserAdmin";
 
 const DashboardAdmin = () => {
   return (
+    <>
+    <NavigationBar />
+    <h3 className="JudulDashboard">DASHBOARD ADMIN, {name}</h3>
     <div>
       <Tabs
-        defaultActiveKey="profile"
         id="fill-tab-example"
         className="mb-3"
         fill
       >
-        <Tab eventKey="home" title="Home">
-          <Sonnet />
+        <Tab eventKey="Activity" title="Activity">
+          <ActivityAdmin />
         </Tab>
-        <Tab eventKey="profile" title="Profile">
-          <Sonnet />
+        <Tab eventKey="Banners" title="Banners">
+          <BannersAdmin />
         </Tab>
-        <Tab eventKey="longer-tab" title="Loooonger Tab">
-          <Sonnet />
+        <Tab eventKey="Categories" title="Categories">
+        <CategoriesAdmin />
         </Tab>
-        <Tab eventKey="contact" title="Contact" disabled>
-          <Sonnet />
+        <Tab eventKey="Promos" title="Promos">
+          <PromosAdmin />
         </Tab>
+        <Tab eventKey="User" title="User">
+          <UserAdmin />
+        </Tab>
+        
+
       </Tabs>
     </div>
+    </>
   );
 };
 
