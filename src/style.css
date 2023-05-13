@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Griffy&family=Montserrat:ital,wght@0,100;0,400;1,600&family=Open+Sans:wght@700&family=Poppins:wght@100;400;600&family=Work+Sans:wght@500&display=swap");
 
+body {
+height: 0;
+padding: 0;
+}
 .FullBg {
   background-image: url(./assets/background2.jpg);
   background-repeat: none;
@@ -26,7 +30,16 @@
   font-weight: bold;
 }
 /* ---------NAVBAR ------------------*/
+
+nav.navbar {
+
+  position: sticky;
+  top: 0px;
+}
+
+
 a.navLink .navbar-nav {
+  
   color: white;
   font-weight: bold;
   justify-content: center;
@@ -40,9 +53,13 @@ a.navLink .navbar-nav {
   font-weight: bold;
 }
 .profile-nav {
-  color: #27408b;
+  color: #ffffff;
   cursor: pointer;
   margin-right: 20px;
+}
+
+.profile-nav:hover {
+  color: black;
 }
 
 .navbar-nav a:hover {
@@ -52,23 +69,34 @@ a.navLink .navbar-nav {
 .navbar-nav a {
   color: white;
   text-decoration: none;
+  
 }
 
 a.mt-2.nav-link {
   margin-right: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+a.mt-2.nav-link:hover {
+  color: black;
 }
 
 .btn-register a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-weight: bold;
+}
+
+.btn-register a:hover {
+  color: white;
 }
 
 .btn-register {
   padding: 10px 25px;
   border: unset;
   border-radius: 15px;
-  color: #212121;
+  color: #ffffff;
   z-index: 1;
   background: transparent;
   position: relative;
@@ -130,7 +158,7 @@ img.img-profile {
   height: 36px;
   width: 180px;
   border: none;
-  background: #5e41de33;
+  background: #02000833;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -138,13 +166,13 @@ img.img-profile {
 .lable {
   line-height: 20px;
   font-size: 17px;
-  color: #5d41de;
+  color: #020007;
   font-family: sans-serif;
   letter-spacing: 1px;
 }
 
 .buttonAdmin:hover {
-  background: #5e41de4d;
+  background: #07021f4d;
 }
 
 .buttonAdmin:hover .svg-icon {
@@ -257,7 +285,7 @@ div.card-title.h5 {
 }
 
 .flip-card {
-  background-color: transparent;
+  background-color: white;
   width: 300px;
   height: 320px;
   perspective: 1000px;
@@ -689,18 +717,18 @@ button.button {
   margin-top: 1.5em;
 }
 
-.card {
+.cardRegister {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 350px;
   width: 300px;
+  min-height: 350px;
   flex-direction: column;
   gap: 35px;
-  border-radius: 15px;
-  background: #e3e3e3;
+  border-radius: 50px;
+  background: #f0f0f0;
   /* box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe; */
-  border-radius: 8px;
+ 
 }
 
 .inputBox,
@@ -980,11 +1008,80 @@ div.coverCategoriesAdmin {
 
 
 
+.footer{
+  height: auto;
+  width: 100vw;
+  padding-top: 40px;
+  color: white;
+}
+.footer-content{
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer-content  h3{
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 3rem;
+  color: black;
+
+}
+.footer-content p {
+  max-width: 500px;
+  margin:10px auto;
+  line-height:  28px;
+  font-size: 14px;
+  color: white;
+}
+
+.footer-bottom {
+  background: black;
+  width:100vw;
+  padding:20px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 14px;
+  word-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.footer-bottom span {
+  text-transform: uppercase;
+  opacity: .4;
+  font-weight: 200;
+}
 
 
 
 
 
+/* END FOOTER */
+
+
+
+@media screen and (max-width:1250px) {
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 700px;
+    flex-direction: column;
+    gap: 25px;
+    border-radius: 50px;
+
+    /* box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe; */
+   
+  } 
+
+  
+}
 
 
 

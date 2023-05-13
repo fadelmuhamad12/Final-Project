@@ -50,6 +50,7 @@ const NavigationBar = () => {
     });
     localStorage.removeItem("token", token);
     localStorage.removeItem("datas");
+    localStorage.removeItem("allUserId")
     // localStorage.removeItem("idCategories");
     // localStorage.removeItem("nameCategories");
     // localStorage.removeItem("imageCategories")
@@ -160,7 +161,7 @@ const NavigationBar = () => {
 
   return (
     <div>
-      <Navbar expand="lg">
+      <Navbar expand="lg" className="fixed-top" style={{position:"sticky"}}>
         <Container fluid>
           <Navbar.Brand> JUDUL </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -307,9 +308,9 @@ const NavigationBar = () => {
               <Image src={avatar} className="img-profile" />
               <div className="username">Name: {name}</div>
               <div className="username">Role: {role}</div>
-              {(isLogin && role === "admin") || "Admin" ? (
+              {(isLogin && role === "admin" || role === "Admin") ? (
                 <Link to="/DashboardAdmin">
-                  {" "}
+                
                   <button className="buttonAdmin">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -335,8 +336,9 @@ const NavigationBar = () => {
                     <span className="lable">Dashboard</span>
                   </button>
                 </Link>
+                
               ) : (
-                " "
+                ""
               )}
             </div>
             <Button

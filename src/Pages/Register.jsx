@@ -82,7 +82,7 @@ const Register = () => {
           <br />
         </div>
         <div className="left-side-button">
-          <Link to="/">
+          <Link to="/home">
           <button className="button"></button>
           </Link>
           <br />
@@ -91,7 +91,7 @@ const Register = () => {
 
       <div className="right container d-flex justify-content-center align-item-center ">
         <form onSubmit={formik.handleSubmit}>
-          <div className="card">
+          <div className="cardRegister">
             <a className="singup">Sign Up</a>
             <div className="inputBox1">
               <input

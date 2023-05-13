@@ -117,7 +117,7 @@ const Categories = () => {
       <div className="destination">
         <h1>Rekomendasi Tempat Untukmu (Kategori)</h1>
         <p className="text-white">a</p>
-        {categories.slice(0, 1).map((category) => {
+        {categories.slice(13,14).map((category) => {
           return (
             <div className="first-desc" key={category.id}>
               <div className="desc-text">

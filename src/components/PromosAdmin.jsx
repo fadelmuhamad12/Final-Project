@@ -11,7 +11,7 @@ import axios from "axios";
 const PromosAdmin = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [promos, setPromos] = useState([]);
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false);  // <== BIKIN USE STATE UNTUK MODALNYA
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -137,12 +137,12 @@ const PromosAdmin = () => {
     })
   }
 
-  const handleModalShow = () => {
-    setModal(true);
-  }
+  const handleModalShow = () => {  //INI BUAT MODAL AGAR MUNCUL
+    setModal(true);                //INI BUAT MODAL AGAR MUNCUL
+  }                                //INI BUAT MODAL AGAR MUNCUL
 
-  const handleModalClose = () => {
-    setModal(false);
+  const handleModalClose = () => {       //INI BUAT MODAL close           
+    setModal(false);                    
   }
 
   useEffect(() => {
@@ -167,7 +167,7 @@ const PromosAdmin = () => {
               <th colSpan={2}>Action</th>
             </tr>
           </thead>
-          {promos.slice(15,20).map((promo) => {
+          {promos.slice(14,20).map((promo) => {
             return (
               <tbody key={promo.id}>
                 <tr>
@@ -294,7 +294,7 @@ const PromosAdmin = () => {
       {/* MODAL EDIT */}
       <Modal
         show={modal}
-        onHide={handleModalClose}
+        onHide={handleModalClose} //<== ini buat manggil button modal close
         backdrop="static"
         keyboard={false}
       >

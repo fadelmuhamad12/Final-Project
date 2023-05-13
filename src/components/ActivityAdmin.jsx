@@ -5,9 +5,34 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 const ActivityAdmin = () => {
   const [activities, setActivities] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [activityId, setActivityId] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageUrls, setImageUrls] = useState("");
+  const [price, setPrice] = useState("");
+  const [price_discount, setPriceDiscount] = useState("");
+  const [rating, setRating] = useState("");
+  const [total_reviews, setTotalReviews] = useState("");
+  const [facilities, setFacilities] = useState("");
+  const [address, setAddress] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [location_maps, setLocationMaps] = useState("");
+
+
+
+  const showModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
 
   const fetchActivities = async () => {
     try {
@@ -21,6 +46,87 @@ const ActivityAdmin = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const fetchActivitiesById = async (id) => {
+    const activitiesById = await axiosInstance.get(`/activity/${id}`, {
+      headers: {
+        apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+      },
+    });
+    setActivityId(activitiesById.data.data.id);
+    setTitle(activitiesById.data.data.title);
+    setDescription(activitiesById.data.data.description);
+    setImageUrls(activitiesById.data.data.imageUrls);
+    setPrice(activitiesById.data.data.price);
+    setPriceDiscount(activitiesById.data.data.price_discount);
+    setRating(activitiesById.data.data.rating);
+    setTotalReviews(activitiesById.data.data.total_reviews);
+    setFacilities(activitiesById.data.data.facilities);
+    setAddress(activitiesById.data.data.address);
+    setProvince(activitiesById.data.data.province);
+    setCity(activitiesById.data.data.city);
+    setLocationMaps(activitiesById.data.data.locations_maps);
+
+    showModal();
+  };
+
+  const handleUpdate = (id) => {
+   
+    axiosInstance
+      .post(
+        `update-activity/${id}`,
+        {
+          activityId,
+          title,
+          description,
+          imageUrls,
+          price,
+          price_discount,
+          rating,
+          total_reviews,
+          facilities,
+          address,
+          city,
+          location_maps,
+        },
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+          },
+        }
+      )
+      .then(() => {
+        alert("category updated");
+        window.location.reload();
+        fetchActivities();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDelete = (id) => {
+    axiosInstance
+      .delete(`delete-activity/${id}`, {
+        headers: {
+          apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
+        },
+      })
+      .then(() => {
+        axiosInstance.get("/categories", {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
+        });
+      }).then((response)=> {
+        setActivities(response.data.data);
+      }).catch((error)=> {
+        console.log(error);
+      })
+     
   };
 
   const formik = useFormik({
@@ -52,7 +158,7 @@ const ActivityAdmin = () => {
             title: values.title,
             description: values.description,
             imageUrls: values.imageUrls,
-            price: values.price, 
+            price: values.price,
             price_discount: values.price_discount,
             rating: values.rating,
             total_reviews: values.total_reviews,
@@ -74,6 +180,10 @@ const ActivityAdmin = () => {
         });
     },
   });
+
+
+
+
 
   useEffect(() => {
     fetchActivities();
@@ -101,7 +211,7 @@ const ActivityAdmin = () => {
             <th colSpan={2}>Actions</th>
           </tr>
         </thead>
-        {activities.slice(0, 2).map((activity) => {
+        {activities.map((activity) => {
           return (
             <tbody key={activity.id}>
               <tr>
@@ -110,7 +220,7 @@ const ActivityAdmin = () => {
                 <td>{activity.description}</td>
                 <td>
                   <img
-                    src={activity.imageUrls}
+                    src={activity.imageUrls.join(".")}
                     alt={activity.title}
                     style={{ width: "150px" }}
                   />
@@ -125,10 +235,12 @@ const ActivityAdmin = () => {
                 <td>{activity.city}</td>
                 <td>{activity.locations_maps}</td>
                 <td>
-                  <button>Edit</button>
+                  <button onClick={() => fetchActivitiesById(activity.id)}>
+                    Edit
+                  </button>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button onClick={()=> handleDelete(activity.id)}>Delete</button>
                 </td>
               </tr>
             </tbody>
@@ -184,7 +296,6 @@ const ActivityAdmin = () => {
               id="imageUrls"
               onChange={formik.handleChange}
               value={formik.values.imageUrls}
-              
             />
             <label htmlFor="imageUrls">imageUrls</label>
           </div>
@@ -302,6 +413,185 @@ const ActivityAdmin = () => {
           </Button>
         </form>
       </div>
+
+      {/* MODAL EDIT */}
+      <Modal
+        show={modal}
+        onHide={closeModal}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="cardUpdateCategoriesAdmin">
+            <span className="title">Update Activity</span>
+
+            <form className="form" onSubmit={handleUpdate}>
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="activityId"
+                  id="activityId"
+                  onChange={(e) => setActivityId(e.target.value)}
+                  value={activityId}
+                />
+                <label htmlFor="activityId">activityId</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="title"
+                  id="title"
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                />
+                <label htmlFor="title">title</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="description"
+                  id="description"
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                />
+                <label htmlFor="description">description</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="imageUrls"
+                  id="imageUrls"
+                  onChange={(e) => setImageUrls(e.target.value)}
+                  value={imageUrls}
+                />
+                <label htmlFor="imageUrls">imageUrls</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="number"
+                  name="price"
+                  id="price"
+                  onChange={(e) => setPrice(e.target.value)}
+                  value={price}
+                />
+                <label htmlFor="price">price</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="price_discount"
+                  id="price_discount"
+                  onChange={(e) => setPriceDiscount(e.target.value)}
+                  value={price_discount}
+                />
+                <label htmlFor="price_discount">price_discount</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="rating"
+                  id="rating"
+                  onChange={(e) => setRating(e.target.value)}
+                  value={rating}
+                />
+                <label htmlFor="rating">rating</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="total_reviews"
+                  id="total_reviews"
+                  onChange={(e) => setTotalReviews(e.target.value)}
+                  value={total_reviews}
+                />
+                <label htmlFor="total_reviews">total_reviews</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="facilities"
+                  id="facilities"
+                  onChange={(e) => setTotalReviews(e.target.value)}
+                  value={facilities}
+                />
+                <label htmlFor="facilities">facilities</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="address"
+                  id="address"
+                  onChange={(e) => setAddress(e.target.value)}
+                  value={address}
+                />
+                <label htmlFor="address">address</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="province"
+                  id="province"
+                  onChange={(e) => setProvince(e.target.value)}
+                  value={province}
+                />
+                <label htmlFor="province">province</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="city"
+                  id="city"
+                  onChange={(e) => setCity(e.target.value)}
+                  value={city}
+                />
+                <label htmlFor="city">city</label>
+              </div>
+
+              <div className="group">
+                <input
+                  placeholder=""
+                  type="text"
+                  name="location_maps"
+                  id="location_maps"
+                  onChange={(e) => setLocationMaps(e.target.value)}
+                  value={location_maps}
+                />
+                <label htmlFor="location_maps">location_maps</label>
+              </div>
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

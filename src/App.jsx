@@ -23,7 +23,8 @@ function App() {
     <div >
       <Router>
       <Routes>
-        <Route exact path='/' Component={Home}></Route>
+      <Route exact path='/' Component={Register}></Route>
+        <Route exact path='/home' Component={Home}></Route>
         <Route exact path='/Activities' Component={Activities}></Route>
         <Route exact path='/Banner' Component={Banner}></Route>
         <Route exact path='/Categories' Component={Categories}></Route>

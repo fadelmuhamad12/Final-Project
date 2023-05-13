@@ -12,6 +12,7 @@ import TesPromo from "./TesPromo";
 import TesPromoDua from "./TesPromoDua";
 import CardBaru from "./CardBaru";
 import CategoryDua from "./CategoryDua";
+import Footer from "../components/Footer";
 
 
 
@@ -34,6 +35,7 @@ const Home = () => {
        {/* <TesPromo /> */}
        {/* <TesPromoDua /> */}
        {/* <CardBaru /> */}
+       <Footer />
      </div>
      </>
  
