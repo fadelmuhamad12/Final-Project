@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Griffy&family=Montserrat:ital,wght@0,100;0,400;1,600&family=Open+Sans:wght@700&family=Poppins:wght@100;400;600&family=Work+Sans:wght@500&display=swap");
 
 body {
-height: 0;
-padding: 0;
+  height: 0;
+  padding: 0;
 }
 .FullBg {
   background-image: url(./assets/background2.jpg);
@@ -12,6 +12,14 @@ padding: 0;
   height: 50rem;
 }
 
+span.navbar-brand {
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 5px;
+  margin-left: 20px;
+  color: white;
+}
+
 /* HOME */
 .Main-higlight h1 {
   color: white;
@@ -19,10 +27,7 @@ padding: 0;
   margin-top: 8rem;
   font-weight: bold;
   font-size: 50px;
-
 }
-
-
 
 .Main-higlight h4 {
   color: white;
@@ -32,14 +37,11 @@ padding: 0;
 /* ---------NAVBAR ------------------*/
 
 nav.navbar {
-
   position: sticky;
   top: 0px;
 }
 
-
 a.navLink .navbar-nav {
-  
   color: white;
   font-weight: bold;
   justify-content: center;
@@ -69,7 +71,6 @@ a.navLink .navbar-nav {
 .navbar-nav a {
   color: white;
   text-decoration: none;
-  
 }
 
 a.mt-2.nav-link {
@@ -82,6 +83,24 @@ a.mt-2.nav-link:hover {
   color: black;
 }
 
+div.username {
+  margin-left: 5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+button.btn-subs {
+  margin-left: 12rem;
+  margin-right: auto;
+  margin-top: 20px;
+}
+.textAbout h1{
+ justify-content: center;
+ color: white;
+ display: flex;
+ background-color: #27408b;
+ width: 500px;
+ margin-left: 32rem;
+}
 .btn-register a {
   color: black;
   text-decoration: none;
@@ -230,7 +249,8 @@ button.slick-arrow.slick-next::before {
 }
 .fullCoverKategori h2 {
   margin-left: 30px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
   color: black;
 }
@@ -248,14 +268,14 @@ button.slick-arrow.slick-next::before {
   margin-left: 30px;
 }
 .fullCoverActivity {
-    background-color: rgb(235, 233, 233);
-    width: 80%;
-    /* height: 400px;
+  background-color: rgb(235, 233, 233);
+  width: 80%;
+  /* height: 400px;
       justify-content: center; */
-    border-radius: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }
 
 .imgPromo {
@@ -275,13 +295,13 @@ div.card-title.h5 {
 .promoText {
   color: black;
   margin-left: 30px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
 }
 
 .coverPromoCards {
   margin-top: 15px;
-
 }
 
 .flip-card {
@@ -493,42 +513,34 @@ p.promoCodeCard {
   max-width: 15rem;
 }
 
-.r-card>:nth-child(2)
-{
+.r-card > :nth-child(2) {
   font-size: 1.2rem;
   font-weight: 600;
 }
 
-.r-card>:nth-child(3)
-{
+.r-card > :nth-child(3) {
   font-size: 1.5rem;
 }
 
-
-.r-card>:nth-child(4)
-{
+.r-card > :nth-child(4) {
   font-size: 0.7rem;
   width: 15rem;
 }
 
-.r-card:hover{
+.r-card:hover {
   scale: 1.025;
   cursor: pointer;
-  background-color: linear-gradient (
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(136, 160, 255, 0.46) 217.91%
-  );
+  background-color: linear-gradient
+    (180deg, rgba(255, 255, 255, 0) 0%, rgba(136, 160, 255, 0.46) 217.91%);
   box-shadow: 0px 72px 49px -51px rgba(136, 160, 255, 0.21);
 }
 .swiper-horizontal {
   overflow: visible;
-
 }
 .cardWrapper {
   width: 70%;
   /* background-color: #212121; */
-  margin: 5rem auto ;
+  margin: 5rem auto;
 }
 
 .r-buttons {
@@ -548,15 +560,13 @@ p.promoCodeCard {
   cursor: pointer;
 }
 
-.r-buttons >:nth-child(1) 
-{
-  background-color: #EEEEFF;
+.r-buttons > :nth-child(1) {
+  background-color: #eeeeff;
 }
 
-.r-buttons >:nth-child(2) 
-{
-  background-color: #EEEEFF;
- /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25) ; */
+.r-buttons > :nth-child(2) {
+  background-color: #eeeeff;
+  /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25) ; */
 }
 
 /* -------- Activities Cards End--------------- */
@@ -728,7 +738,6 @@ button.button {
   border-radius: 50px;
   background: #f0f0f0;
   /* box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe; */
- 
 }
 
 .inputBox,
@@ -942,7 +951,6 @@ div.coverCategoriesAdmin {
   margin-top: 25px;
 }
 
-
 /* TES DESTINASI */
 .destination {
   margin: 4rem 6rem;
@@ -956,19 +964,19 @@ div.coverCategoriesAdmin {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 4,6rem;
+  margin-top: 4, 6rem;
 }
 .first-descdua {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 4,6rem;
+  margin-top: 4, 6rem;
 }
 
 .desc-text {
   width: 45%;
   text-align: start;
-  font-size: 1.1rem ;
+  font-size: 1.1rem;
   text-align: justify;
 }
 
@@ -984,6 +992,54 @@ div.coverCategoriesAdmin {
   z-index: -99;
 }
 
+/* ABOUT US */
+.about {
+  width: 100%;
+  padding: 78px;
+  /* background-color: #191919; */
+}
+
+.about img {
+  height: auto;
+  width: 420px;
+}
+.about-text {
+  width: 550px;
+}
+
+.main {
+  width: 1130px;
+  max-width: 95%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.about-text h1 {
+  font-size: 80px;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.about-text h5 {
+  font-size: 25px;
+  text-transform: capitalize;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+span {
+  color: #27408b;
+}
+
+.about-text p {
+  text-align: justify;
+  letter-spacing: 1px;
+  line-height: 28px;
+  margin-bottom: 45px;
+}
+
+
 .image img {
   width: 49%;
   height: 350px;
@@ -998,23 +1054,19 @@ div.coverCategoriesAdmin {
   right: 0;
 }
 
-
 /*-------------------- DAHBOARD ADMIN -----------------------*/
 .dashboardWrapper {
   width: 90%;
   margin: 0 auto;
 }
 
-
-
-
-.footer{
+.footer {
   height: auto;
   width: 100vw;
   padding-top: 40px;
   color: white;
 }
-.footer-content{
+.footer-content {
   background-color: #111;
   display: flex;
   align-items: center;
@@ -1023,26 +1075,25 @@ div.coverCategoriesAdmin {
   text-align: center;
 }
 
-.footer-content  h3{
+.footer-content h3 {
   font-size: 1.8rem;
   font-weight: 400;
   text-transform: capitalize;
   line-height: 3rem;
   color: black;
-
 }
 .footer-content p {
   max-width: 500px;
-  margin:10px auto;
-  line-height:  28px;
+  margin: 10px auto;
+  line-height: 28px;
   font-size: 14px;
   color: white;
 }
 
 .footer-bottom {
   background: black;
-  width:100vw;
-  padding:20px 0;
+  width: 100vw;
+  padding: 20px 0;
   text-align: center;
 }
 .footer-bottom p {
@@ -1053,41 +1104,32 @@ div.coverCategoriesAdmin {
 
 .footer-bottom span {
   text-transform: uppercase;
-  opacity: .4;
+  opacity: 0.4;
   font-weight: 200;
 }
 
-
-
-
-
 /* END FOOTER */
 
-
-
-@media screen and (max-width:1250px) {
+@media screen and (max-width: 1450px) {
   .cardRegister {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 700px;
+    height: 670px;
     flex-direction: column;
     gap: 25px;
     border-radius: 50px;
 
     /* box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe; */
-   
-  } 
+  }
 
-  
+  div.me-auto {
+    margin-left: 0px;
+  }
 }
 
-
-
-
-
-@media screen and (max-width:850px) {
+@media screen and (max-width: 850px) {
   .destination {
     margin: 4rem 2rem;
   }
@@ -1115,5 +1157,4 @@ div.coverCategoriesAdmin {
   .image img {
     height: 250px;
   }
-  
 }

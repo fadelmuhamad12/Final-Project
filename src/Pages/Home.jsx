@@ -13,6 +13,7 @@ import TesPromoDua from "./TesPromoDua";
 import CardBaru from "./CardBaru";
 import CategoryDua from "./CategoryDua";
 import Footer from "../components/Footer";
+import AboutUs from "../components/AboutUs";
 
 
 
@@ -25,16 +26,16 @@ const Home = () => {
      <Higlight />
      </div>
      <div >
+    
        <Promo />
-       {/* <TesPromo />
-       <TesPromoDua /> */}
+    
        <Categories />
        <CategoryDua />
-       {/* <Banner/> */}
        <Activities />
-       {/* <TesPromo /> */}
-       {/* <TesPromoDua /> */}
-       {/* <CardBaru /> */}
+       <Banner/>
+       <hr />
+       <AboutUs />
+   
        <Footer />
      </div>
      </>

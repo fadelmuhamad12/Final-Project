@@ -116,7 +116,7 @@ const Promo = () => {
 
             <Swiper {...sliderSettings}>
             <SliderButtons/>
-            {promos.slice(12, 20).map((promo) => {
+            {promos.slice(10, 20).map((promo) => {
               return (
                 <SwiperSlide key={promo.id}>
                 <div className="coverPromoCards" key={promo.id}>

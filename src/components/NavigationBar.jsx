@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useNavigate } from "react-router-dom";
+import airplane from "../assets/airplane.jpg"
+
 
 const NavigationBar = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
@@ -55,7 +57,7 @@ const NavigationBar = () => {
     // localStorage.removeItem("nameCategories");
     // localStorage.removeItem("imageCategories")
     alert("Logout Success");
-    navigate("/");
+    navigate("/home");
     window.location.reload();
   };
 
@@ -153,7 +155,7 @@ const NavigationBar = () => {
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setName(parsedData.data.name);
-      setNumber(parsedData.data.number);
+      setNumber(parsedData.data.phoneNumber);
       setAvatar(parsedData.data.profilePictureUrl);
       setRole(parsedData.data.role);
     }
@@ -163,7 +165,7 @@ const NavigationBar = () => {
     <div>
       <Navbar expand="lg" className="fixed-top" style={{position:"sticky"}}>
         <Container fluid>
-          <Navbar.Brand> JUDUL </Navbar.Brand>
+          <Navbar.Brand> GO <span>.TRAVEL</span> <img url="./assets/airplane.jpg" alt="" /> </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -171,12 +173,13 @@ const NavigationBar = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
+              <img src="./assets/airplane.jpg" alt="" />
               <Nav className="gap-4 ">
                 {/* <Link to="/">Home</Link> */}
                 <Link to="/Categories">Categories</Link>
                 <Link to="/Promo">Promos</Link>
                 <Link to="/Activities">Activities</Link>
-                <Link to>Contact Us</Link>
+                <Link to="/Home">Home</Link>
                 <Link to>About</Link>
               </Nav>
             </Nav>
@@ -308,6 +311,8 @@ const NavigationBar = () => {
               <Image src={avatar} className="img-profile" />
               <div className="username">Name: {name}</div>
               <div className="username">Role: {role}</div>
+  
+
               {(isLogin && role === "admin" || role === "Admin") ? (
                 <Link to="/DashboardAdmin">
                 

@@ -3,21 +3,25 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="Footer">
-        <div className="top"></div>
-        <div className="bottom"></div>
-        <div>
-            <h1>Go.Travel</h1>
-            <p>Go.Travel is a Travel Website designed by Fadel</p>
+    <footer>
+      <div className="footer-content">
+        <h3 className="text-white">
+          GO.<span style={{ color: "#27408b" }}>Travel</span>
+        </h3>
+        <p>
+          We are an online platform that aims to provide you with the best
+          travel experiences possible. We believe that every trip should be a
+          valuable investment in your personal growth and well-being. <br />{" "}
+          Designed by Fadel
+        </p>
+        <div className="socials" id="medsos">
+          {/* <p id="hit">Hit Me Up</p> */}
         </div>
-        <div>
-            <Link to= "">
-                <i className="fa-brands fa-facebook-square"></i>
-            </Link>
+        <div className="footer-bottom">
+          <p>copyright ©2023 F2k. Dibimbing.id</p>
         </div>
-
       </div>
-   
+    </footer>
   );
 };
 

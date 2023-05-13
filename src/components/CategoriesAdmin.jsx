@@ -5,6 +5,8 @@ import { Card, Form, Button } from "react-bootstrap";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import NavigationBar from "../components/NavigationBar";
+import Table from 'react-bootstrap/Table';
+
 
 import Modal from "react-bootstrap/Modal";
 
@@ -29,15 +31,8 @@ const CategoriesAdmin = () => {
         headers: {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
-      });  // <== SETELAH KEPANGGIL MAU DILAKUKAN APA AKSINYA (AKSINYA ADA DI BAWAH)
-      // console.log(categories.data.data);
+      });  
       setCategories(categories.data.data);
-      // const nameCategories = categories.data.data.map((category)=> category.name);
-      // localStorage.setItem("nameCategories", nameCategories);
-      // const imageCategories = categories.data.data.map((category)=> category.imageUrl);
-      // localStorage.setItem("imageCategories", imageCategories)
-      // const idCategories = categories.data.data.map((category)=> category.id);
-      // localStorage.setItem("idCategories", idCategories);
     } catch (error) {
       console.log(error);
     }
@@ -163,7 +158,7 @@ const CategoriesAdmin = () => {
     <>
   
       <div className="coverCategoriesAdmin">
-        <table border="1" width={1000}>
+      <Table striped bordered hover>
           <thead>
             <tr>
               <th>id</th>
@@ -197,7 +192,7 @@ const CategoriesAdmin = () => {
               </tbody>
             );
           })}
-        </table>
+            </Table>
       </div>
 
         
