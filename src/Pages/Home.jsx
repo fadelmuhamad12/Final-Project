@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../Pages/Banner";
 import Categories from "../Pages/Categories";
 import Higlight from "../Pages/Higlight";
@@ -19,6 +19,10 @@ import AboutUs from "../components/AboutUs";
 
 
 const Home = () => {
+  const [promos, setPromos] = useState([]);
+  
+
+
   return (
     <>
       <div className="FullBg">
@@ -28,7 +32,6 @@ const Home = () => {
      <div >
     
        <Promo />
-    
        <Categories />
        <CategoryDua />
        <Activities />

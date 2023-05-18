@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './style.css'
 import Activities from "./Pages/Activities";
 import Banner from "./Pages/Banner";
-import Categories from "./Pages/Categories";
+// import Categories from "./Pages/Categories";
 import Higlight from "./Pages/Higlight";
 import Promo from "./Pages/Promo";
 import Register from "./Pages/Register";
@@ -15,6 +15,9 @@ import UserAdmin from "./components/UserAdmin";
 import DashboardAdmin from "./components/DashboardAdmin";
 import HighlightCategory from "./components/HighlightCategory";
 import ActivityAdmin from "./components/ActivityAdmin";
+import FullCategories from "./components/FullCategories";
+import FullActivities from "./components/FullActivities";
+import FullPromo from "./components/FullPromo";
 
 
 
@@ -25,11 +28,11 @@ function App() {
       <Routes>
       <Route exact path='/' Component={Register}></Route>
         <Route exact path='/home' Component={Home}></Route>
-        <Route exact path='/Activities' Component={Activities}></Route>
+        <Route exact path='/FullActivities' Component={FullActivities}></Route>
         <Route exact path='/Banner' Component={Banner}></Route>
-        <Route exact path='/Categories' Component={Categories}></Route>
+        <Route exact path='/FullCategories' Component={FullCategories}></Route>
         <Route exact path='/Higlight' Component={Higlight}></Route>
-        <Route exact path='/Promo' Component={Promo}></Route>
+        <Route exact path='/FullPromo' Component={FullPromo}></Route>
         <Route exact path='/Register' Component={Register}></Route>
         <Route exact path='/HighlightCategory' Component={HighlightCategory}></Route>
 

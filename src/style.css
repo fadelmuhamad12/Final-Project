@@ -17,7 +17,68 @@ span.navbar-brand {
   font-size: 20px;
   letter-spacing: 5px;
   margin-left: 20px;
-  color: white;
+  color: black;
+}
+
+.cardContent h3 {
+  text-align: center;
+}
+.cardContent img {
+  margin-left: 100px;
+}
+
+.cardContent p {
+  font-weight: bold;
+  text-align: justify;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardContent h5 {
+  color: orange;
+  margin-left: 190px;
+}
+
+.cardContent span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardContents h3 {
+  text-align: center;
+}
+.cardContents img {
+  margin-left: 100px;
+}
+.cardContents p {
+  font-weight: bold;
+  text-align: justify;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.cardContents span {
+  /* margin-left: 120px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardContents h5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.cardContents h6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+
 }
 
 /* HOME */
@@ -93,13 +154,13 @@ button.btn-subs {
   margin-right: auto;
   margin-top: 20px;
 }
-.textAbout h1{
- justify-content: center;
- color: white;
- display: flex;
- background-color: #27408b;
- width: 500px;
- margin-left: 32rem;
+.textAbout h1 {
+  justify-content: center;
+  color: white;
+  display: flex;
+  background-color: #27408b;
+  width: 500px;
+  margin-left: 32rem;
 }
 .btn-register a {
   color: black;
@@ -1038,7 +1099,6 @@ span {
   line-height: 28px;
   margin-bottom: 45px;
 }
-
 
 .image img {
   width: 49%;

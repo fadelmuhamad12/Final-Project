@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../api/axios"; // <== Untuk Manggil Base Url
 import { Card, Col, Image, Form, Button, Container } from "react-bootstrap";
-import React, { Component } from "react";
-import Slider from "react-slick";
 import NextArrow from "../components/NextArrow";
 import PrevArrow from "../components/PrevArrow";
 
@@ -84,40 +82,10 @@ const Categories = () => {
 
   return (
     <>
-      {/* <div className="fullCoverKategori ">
-        <h2> Kategori yang mungkin cocok buat kamu </h2>
-        <Slider {...settings}>
-          {categories.map((category) => {
-            return (
-              <div key={category.id} className="coverCategories">
-                <Container>
-                  <Col
-                    xs={6}
-                    s={4}
-                    sm={4}
-                    md={4}
-                    lg={4}
-                    xl={4}
-                    className="justify-content-center text-align-center "
-                  >
-                    <Card style={{ width: "250px", margin: "10px" }}>
-                      <Card.Img variant="top" src={category.imageUrl} />
-                      <Card.Body>
-                        <Card.Title>{category.name}</Card.Title>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Container>
-              </div>
-            );
-          })}
-        </Slider>
-      </div> */}
-
       <div className="destination">
         <h1>Rekomendasi Tempat Untukmu (Kategori)</h1>
         <p className="text-white">a</p>
-        {categories.slice(15,16).map((category) => {
+        {categories.slice(14,15).map((category) => {
           return (
             <div className="first-desc" key={category.id}>
               <div className="desc-text">

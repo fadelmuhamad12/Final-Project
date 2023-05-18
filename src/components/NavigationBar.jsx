@@ -176,9 +176,9 @@ const NavigationBar = () => {
               <img src="./assets/airplane.jpg" alt="" />
               <Nav className="gap-4 ">
                 {/* <Link to="/">Home</Link> */}
-                <Link to="/Categories">Categories</Link>
-                <Link to="/Promo">Promos</Link>
-                <Link to="/Activities">Activities</Link>
+                <Link to="/FullCategories">Categories</Link>
+                <Link to="/FullPromo">Promo</Link>
+                <Link to="/FullActivities">Activities</Link>
                 <Link to="/Home">Home</Link>
                 <Link to>About</Link>
               </Nav>

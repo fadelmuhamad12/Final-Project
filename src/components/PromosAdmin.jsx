@@ -167,7 +167,7 @@ const PromosAdmin = () => {
               <th colSpan={2}>Action</th>
             </tr>
           </thead>
-          {promos.slice(14,20).map((promo) => {
+          {promos.slice(0,10).map((promo) => {
             return (
               <tbody key={promo.id}>
                 <tr>

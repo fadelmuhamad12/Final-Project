@@ -24,67 +24,6 @@ const Promo = () => {
     setShowModal(false);
   };
 
-  const settings = {
-    className: "center",
-    centerMode: true,
-    infinite: true,
-    centerPadding: "10px",
-    slidesToShow: 3,
-    speed: 500,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 830,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-    ],
-  };
 
   const fetchPromos = async () => {
     try {
@@ -116,7 +55,7 @@ const Promo = () => {
 
             <Swiper {...sliderSettings}>
             <SliderButtons/>
-            {promos.slice(10, 20).map((promo) => {
+            {promos.slice(0, 10).map((promo) => {
               return (
                 <SwiperSlide key={promo.id}>
                 <div className="coverPromoCards" key={promo.id}>
@@ -151,56 +90,7 @@ const Promo = () => {
           </div>
         </section>
       </div>
-      {/* <div className="fullCoverPromoAndText d-flex">
-        <div>
-          <h3>
-            Cek Promo Yang <br />
-            Tersedia Yuk!
-          </h3>
-        </div>
-        <Container>
-          <Row>
-            <div className="fullCoverPromo ">
-              <Slider {...settings}>
-              {promos.slice(16, 20).map((promo) => {
-                return (
-                  <Col xs={6} s={4} sm={4} md={4} lg={3} xl={6} xxl={3}>
-                    <div className="coverPromoCards" key={promo.id}>
-                      <div className="flip-card">
-                        <div className="flip-card-inner">
-                          <div className="flip-card-front">
-                            <img src={promo.imageUrl} alt="" />
-                            <p className="title">{promo.title}</p>
-                         
-                          </div>
-                          <div className="flip-card-back ">
-                            <p>{promo.description}</p>
-
-                            <div className="d-flex justify-content-center">
-                              <button
-                                className="learn-more"
-                                onClick={() => handleShowModal(promo)}
-                              >
-                                <span className="circle" aria-hidden="true">
-                                  <span className="icon arrow"></span>
-                                </span>
-                                <span className="button-text">See Details</span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Col>
-                );
-              })}
-               </Slider>
-              
-            </div>
-          </Row>
-        </Container>
-       
-      </div> */}
+    
 
       {/* MODAL SEE DETAILS */}
       <Modal show={modal} onHide={handleCloseModal} animation={true}>

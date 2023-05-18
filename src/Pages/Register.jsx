@@ -59,7 +59,7 @@ const Register = () => {
         .then((response) => {
           alert("register berhasil");
           console.log(response);
-          navigate("/");
+          navigate("/home");
         })
         .catch((error) => {
           alert(error.message);
