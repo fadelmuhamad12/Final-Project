@@ -19,16 +19,18 @@ import AboutUs from "../components/AboutUs";
 
 
 const Home = () => {
-  const [promos, setPromos] = useState([]);
   
 
 
   return (
     <>
-      <div className="FullBg">
-     <NavigationBar />
+      <NavigationBar />
+      <div className="FullBg ">
+      <div >
      <Higlight />
      </div>
+      </div>
+     
      <div >
     
        <Promo />

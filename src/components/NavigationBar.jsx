@@ -17,18 +17,22 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { useNavigate } from "react-router-dom";
 import airplane from "../assets/airplane.jpg"
 
-
 const NavigationBar = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
   const [show, setShow] = useState(false);
+  const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
+  const [userId, setUserId] = useState(
+    JSON.parse(localStorage.getItem("userId"))
+  );
+  const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
-  const [number, setNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [profilePictureUrl, setProfilePictureUrl] = useState("");
   const [avatar, setAvatar] = useState("");
   const [showProfile, setShowProfile] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const isLogin = JSON.parse(localStorage.getItem("datas"));
-
   const navigate = useNavigate();
 
   // Modal Login
@@ -43,6 +47,64 @@ const NavigationBar = () => {
     setShowProfile(false);
   };
 
+  // Modal editProfile
+  const showModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+
+
+  const fetchLoggedUser = async () => {
+      const setLoggedUsers = await axiosInstance.get("/user", {
+        headers: {
+          apiKey: apiKeys,
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      const userId = setLoggedUsers.data.data.id;
+      localStorage.setItem("userId", JSON.stringify(userId));
+      setUserId(setLoggedUsers.data.data.id);
+      setName(setLoggedUsers.data.data.name);
+      setEmail(setLoggedUsers.data.data.email);
+      setProfilePictureUrl(setLoggedUsers.data.data.profilePictureUrl);
+      setPhoneNumber(setLoggedUsers.data.data.phoneNumber);
+      setRole(setLoggedUsers.data.data.role);
+      showModal();
+
+    
+  };
+
+  const updateProfile = () => {
+    axiosInstance
+      .post(
+        "/update-profile",
+        {
+          name,
+          email,
+          profilePictureUrl,
+          phoneNumber,
+        },
+        {
+          headers: {
+            apiKey: apiKeys,
+            Authorization: `Bearer${token}`,
+          },
+        }
+      )
+      .then(() => {
+        alert("Profile Updated!");
+        window.location.reload();
+        fetchLoggedUser();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleLogout = () => {
     axiosInstance.get("/logout", {
       headers: {
@@ -52,60 +114,11 @@ const NavigationBar = () => {
     });
     localStorage.removeItem("token", token);
     localStorage.removeItem("datas");
-    localStorage.removeItem("allUserId")
-    // localStorage.removeItem("idCategories");
-    // localStorage.removeItem("nameCategories");
-    // localStorage.removeItem("imageCategories")
+    localStorage.removeItem("allUserId");
     alert("Logout Success");
     navigate("/home");
     window.location.reload();
   };
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: "",
-  //     name: "",
-  //     password: "",
-  //     passwordRepeat: "",
-  //     role: "",
-  //     profilePictureUrl: "",
-  //     phoneNumber: "",
-  //   },
-  //   validationSchema: yup.object().shape({
-  //     email: yup.string().required().email(),
-  //     password: yup.string().required(),
-  //     passwordRepeat: yup.string().required(),
-  //     name: yup.string().required(),
-  //     role: yup.string().required(),
-  //     profilePictureUrl: yup.string().required(),
-  //     phoneNumber: yup.string().required(),
-  //   }),
-  //   onSubmit: (values) => {
-  //     axiosInstance
-  //       .post(
-  //         "/register",
-  //         {
-  //           email: values.email,
-  //           name: values.name,
-  //           password: values.password,
-  //           passwordRepeat: values.passwordRepeat,
-  //           role: values.role,
-  //           profilePictureUrl: values.profilePictureUrl,
-  //           phoneNumber: values.phoneNumber,
-  //         },
-  //         {
-  //           headers: {
-  //             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-  //           },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         console.log(response);
-  //         alert("Register Berhasil");
-  //         window.location.reload();
-  //       });
-  //   },
-  // });
 
   const formik = useFormik({
     initialValues: {
@@ -155,7 +168,7 @@ const NavigationBar = () => {
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setName(parsedData.data.name);
-      setNumber(parsedData.data.phoneNumber);
+      setPhoneNumber(parsedData.data.phoneNumber);
       setAvatar(parsedData.data.profilePictureUrl);
       setRole(parsedData.data.role);
     }
@@ -163,9 +176,16 @@ const NavigationBar = () => {
 
   return (
     <div>
-      <Navbar expand="lg" className="fixed-top" style={{position:"sticky"}}>
+      <Navbar
+        expand="lg"
+        className="fixed-top"
+        bg="dark"
+        style={{ position: "sticky" }}
+      >
         <Container fluid>
-          <Navbar.Brand> GO <span>.TRAVEL</span> <img url="./assets/airplane.jpg" alt="" /> </Navbar.Brand>
+          <Navbar.Brand>
+            GO <span>.TRAVEL</span> <img src={airplane} alt="" style={{width: "40px"}}/>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -226,17 +246,6 @@ const NavigationBar = () => {
                 </Form.Text>
               </Form.Group>
 
-              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Name:</Form.Label>
-                <Form.Control
-                  onChange={handleForm}
-                  type="text"
-                  placeholder="Password"
-                  name="password"
-                  values={formik.values.name}
-                />
-              </Form.Group> */}
-
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
@@ -247,50 +256,6 @@ const NavigationBar = () => {
                   values={formik.values.password}
                 />
               </Form.Group>
-
-              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password Repeat</Form.Label>
-                <Form.Control
-                  onChange={handleForm}
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  values={formik.values.passwordRepeat}
-                />
-              </Form.Group> */}
-
-              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Role</Form.Label>
-                <Form.Control
-                  onChange={handleForm}
-                  type="text"
-                  placeholder="Password"
-                  name="password"
-                  values={formik.values.role}
-                />
-              </Form.Group> */}
-
-              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Profile Picture</Form.Label>
-                <Form.Control
-                  onChange={handleForm}
-                  type="text"
-                  placeholder="text"
-                  name="password"
-                  values={formik.values.profilePictureUrl}
-                />
-              </Form.Group> */}
-
-              {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Phone Number: </Form.Label>
-                <Form.Control
-                  onChange={handleForm}
-                  type="text"
-                  placeholder="text"
-                  name="password"
-                  values={formik.values.phoneNumber}
-                />
-              </Form.Group> */}
 
               <Button variant="primary" type="submit">
                 Submit
@@ -311,11 +276,9 @@ const NavigationBar = () => {
               <Image src={avatar} className="img-profile" />
               <div className="username">Name: {name}</div>
               <div className="username">Role: {role}</div>
-  
 
-              {(isLogin && role === "admin" || role === "Admin") ? (
+              {(isLogin && role === "admin") || role === "Admin" ? (
                 <Link to="/DashboardAdmin">
-                
                   <button className="buttonAdmin">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -341,11 +304,18 @@ const NavigationBar = () => {
                     <span className="lable">Dashboard</span>
                   </button>
                 </Link>
-                
               ) : (
                 ""
               )}
             </div>
+            <Button
+              variant="info"
+              type="submit"
+              className="btn-subs"
+              onClick={fetchLoggedUser}
+            >
+              Edit Profile
+            </Button>
             <Button
               variant="danger"
               type="submit"
@@ -357,6 +327,70 @@ const NavigationBar = () => {
           </Modal.Body>
         </Modal>
       </Navbar>
+
+      {/* Modal Edit Profile */}
+      <Modal
+        show={modal}
+        onHide={closeModal}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={updateProfile}>
+            <Form.Group className="mb-3">
+              <Form.Label>Email address:</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Profile Picture</Form.Label>
+              <Form.Control
+                type="text"
+                name="profilePictureUrl"
+                id="profilePictureUrl"
+                value={profilePictureUrl}
+                onChange={(e) => setProfilePictureUrl(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                type="number"
+                name="phoneNumber"
+                id="phoneNumber"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

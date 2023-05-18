@@ -35,45 +35,8 @@ const UserAdmin = () => {
     }
   };
 
-  const fetchLoggedUser = async () => {
-    try {
-      const setLoggedUsers = await axiosInstance
-        .get("/user", {
-          headers: {
-            apiKey: apiKeys,
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-          },
-        })
-       console.log(setLoggedUsers.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  // const updateProfile = (e) => {
-  //   e.preventDefault();
-  //   axiosInstance
-  //     .post(
-  //       "/update-profile",
-  //       {
-  //         name,
-  //         email,
-  //         profilePicture,
-  //         phoneNumber,
-  //       },
-  //       {
-  //         headers: {
-  //           apiKey: apiKeys,
-  //           Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaGZhcmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI5NWE4MDNjMy1iNTFlLTQ3YTAtOTBkYi0yYzJmM2Y0ODE1YTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzk4NDM0NDR9.ETsN6dCiC7isPReiQyHCQxya7wzj05wz5zruiFXLx0k"}`,
-  //         },
-  //       }
-  //     )
-  //     .then(() => {
-  //       alert("Profile Updated");
-  //       fetchGetAllUser();
-  //       handleShowModal();
-  //     });
-  // };
+
 
   const updateRoleUser = (id, role) => {
   axiosInstance
@@ -155,102 +118,6 @@ const UserAdmin = () => {
         </Table>
       </div>
 
-      {/* LOGGED USER */}
-      {/* <div>
-        <h3>Logged User</h3>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Profile Picture</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-          </tbody>
-        </Table>
-      </div> */}
-
-      {/* MODAL EDIT */}
-      {/* <Modal
-        show={modal}
-        onHide={handleCloseModal}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Body>
-          <div className="cardUpdateCategoriesAdmin">
-            <span className="title">Update Kategori</span>
-
-            <form className="form">
-              <div className="group">
-                <input
-                  placeholder=""
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                />
-                <label htmlFor="name">Nama</label>
-              </div>
-              <div className="group">
-                <input
-                  placeholder=""
-                  type="text"
-                  id="email"
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={name}
-                />
-                <label htmlFor="email">Email</label>
-              </div>
-
-              <div className="group">
-                <input
-                  placeholder=""
-                  type="text"
-                  id="profilePicture"
-                  name="profilePicture"
-                  onChange={(e) => setProfilePicture(e.target.value)}
-                  value={profilePicture}
-                />
-                <label htmlFor="profilePicture">profilePicture</label>
-              </div>
-
-              <div className="group">
-                <input
-                  placeholder=""
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  value={phoneNumber}
-                />
-                <label htmlFor="phoneNumber">phoneNumber</label>
-              </div>
-              <button type="submit" >
-                Submit
-              </button>
-            </form>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
-
       {/* MODAL EDIT ROLE */}
       <div>
         {Datas.map((data)=> {
@@ -297,36 +164,6 @@ const UserAdmin = () => {
 
           )
         })}
-         {/* <Modal show={modalRole} onHide={handleCloseModalRole} backdrop="static">
-        <Modal.Body>
-          <div className="cardUpdateCategoriesAdmin" >
-            <span className="title">Update Role</span>
-
-            <form className="form" onSubmit={updateRoleUser}>
-              <div className="group">
-                <input
-                  placeholder=""
-                  type="text"
-                  id= "role"
-                  name="role"
-                  onChange={(e) => setRole(e.target.value)}
-                  value={role}
-                />
-                <label htmlFor="role">role</label>
-              </div>
-              <button type="submit">
-                Submit
-              </button>
-            </form>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModalRole}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
-     
       </div>
     </>
   );

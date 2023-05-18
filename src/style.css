@@ -19,7 +19,12 @@ span.navbar-brand {
   margin-left: 20px;
   color: black;
 }
-
+.btn-subs {
+  width: 200px;
+  align-items: center;
+  margin-left: 8rem;
+  margin-top: 10px;
+}
 .cardContent h3 {
   text-align: center;
 }
@@ -57,7 +62,6 @@ span.navbar-brand {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .cardContents span {
   /* margin-left: 120px; */
@@ -70,7 +74,6 @@ span.navbar-brand {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .cardContents h6 {
@@ -78,24 +81,38 @@ span.navbar-brand {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-
 }
 
 /* HOME */
 .Main-higlight h1 {
   color: white;
   margin-left: 7rem;
-  margin-top: 8rem;
+  /* margin-top: 8rem; */
   font-weight: bold;
-  font-size: 50px;
+  font-size: 0.1px;
 }
 
-.Main-higlight h4 {
+h4.text-white {
   color: white;
   margin-left: 7rem;
   font-weight: bold;
 }
+h1.text-highlight {
+  color: white;
+  margin-left: 7rem;
+  margin-top: 10rem;
+  font-weight: bold;
+  font-size: 50px;
+}
 /* ---------NAVBAR ------------------*/
+
+div.gap-4.navbar-nav a {
+  color: rgb(255, 255, 255);
+}
+
+div.gap-4.navbar-nav a:hover {
+  color: rgb(0, 0, 0);
+}
 
 nav.navbar {
   position: sticky;
@@ -110,7 +127,7 @@ a.navLink .navbar-nav {
 }
 
 .navbar-nav {
-  margin-left: 16vw;
+  margin-left: 13vw;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -126,7 +143,7 @@ a.navLink .navbar-nav {
 }
 
 .navbar-nav a:hover {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .navbar-nav a {
@@ -149,11 +166,7 @@ div.username {
   font-weight: bold;
   margin-top: 1rem;
 }
-button.btn-subs {
-  margin-left: 12rem;
-  margin-right: auto;
-  margin-top: 20px;
-}
+
 .textAbout h1 {
   justify-content: center;
   color: white;
@@ -169,7 +182,7 @@ button.btn-subs {
 }
 
 .btn-register a:hover {
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .btn-register {
@@ -1189,6 +1202,185 @@ span {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .FullRegisterPage {
+    width: 90%;
+    height: 90vh;
+    background-color: #e7e7e7;
+    box-shadow: #282936 2px 2px 2px 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 20px auto 20px auto;
+    flex-direction: column;
+    background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+  }
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    min-height: 450px;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    margin-left: 600px;
+    margin-bottom: 60px;
+  }
+  div.left-side {
+    background-image: none;
+    /* background-color: #212121; */
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .FullRegisterPage {
+    width: 90%;
+    height: 90vh;
+    background-color: #e7e7e7;
+    box-shadow: #282936 2px 2px 2px 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 20px auto 20px auto;
+    flex-direction: column;
+    background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+  }
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    min-height: 450px;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    margin-left: 600px;
+    margin-bottom: 60px;
+  }
+  div.left-side {
+    background-image: none;
+    /* background-color: #212121; */
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .FullRegisterPage {
+    width: 90%;
+    height: 90vh;
+    background-color: #e7e7e7;
+    box-shadow: #282936 2px 2px 2px 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 20px auto 20px auto;
+    flex-direction: column;
+    background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+  }
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    min-height: 450px;
+    gap: 30px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    margin-right: 300px;
+  }
+  div.left-side {
+    background-image: none;
+    /* background-color: #212121; */
+  }
+  button.button {
+    position: absolute;
+    top: 0;
+    margin-top: 370px;
+  }
+  .left-side-title h3 {
+    display: none;
+  }
+  .left-side-signup h5 {
+    display: none;
+  }
+  .left-side-or h5 {
+    position: absolute;
+    top: 0;
+    margin-top: 370px;
+
+    margin-left: 120px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .FullRegisterPage {
+    width: 90%;
+    height: 90vh;
+    background-color: #e7e7e7;
+    box-shadow: #282936 2px 2px 2px 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 20px auto 20px auto;
+    flex-direction: column;
+    background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+  }
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    min-height: 450px;
+    gap: 30px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    margin-right: 300px;
+  }
+  div.left-side {
+    background-image: none;
+    /* background-color: #212121; */
+  }
+  button.button {
+    position: absolute;
+    top: 0;
+    margin-top: 370px;
+  }
+  .left-side-title h3 {
+    display: none;
+  }
+  .left-side-signup h5 {
+    display: none;
+  }
+  .left-side-or h5 {
+    position: absolute;
+    top: 0;
+    margin-top: 370px;
+    margin-left: 100px;
+  }
+}
+
 @media screen and (max-width: 850px) {
   .destination {
     margin: 4rem 2rem;
@@ -1216,5 +1408,115 @@ span {
   }
   .image img {
     height: 250px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .FullRegisterPage {
+    width: 90%;
+    height: 90vh;
+    background-color: #e7e7e7;
+    box-shadow: #282936 2px 2px 2px 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 20px auto 20px auto;
+    flex-direction: column;
+    background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+  }
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 600px;
+    gap: 20px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    margin-right: 600px;
+    margin-bottom: 210px;
+  }
+  div.left-side {
+    background-image: none;
+    /* background-color: #212121; */
+  }
+  button.button {
+    position: absolute;
+    top: 0;
+    margin-top: 680px;
+    margin-left: 200px;
+  }
+  .left-side-title h3 {
+    display: none;
+  }
+  .left-side-signup h5 {
+    display: none;
+  }
+  .left-side-or h5 {
+    display: flex;
+    position: absolute;
+    top: 0;
+    margin-top: 625px;
+    margin-left: 60px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .FullRegisterPage {
+    width: 90%;
+    height: 90vh;
+    background-color: #e7e7e7;
+    box-shadow: #282936 2px 2px 2px 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 20px auto 20px auto;
+    flex-direction: column;
+    background-image: url("https://s3-alpha-sig.figma.com/img/7b64/f1c4/a41576f8199d6edb3d6e0d59abcd0352?Expires=1684713600&Signature=BdLm0boRdmhejoa8t03tuQ93BwrDjYbxyyS4Me1kL3keWjRaPtFOOoEvsqWXkN72BvQFv5YodXlt75IYyU5tsOls~m9j30VkSXkQEXKngPdz1ICFXdwe7zH4gHQRb62kPXvJMEzxfgmMrDnWMxuRWRP3ETvHryLF7WZwobGP4jDrg5hqdjbttOUCRet-YN46D1hfKxhkojv4eXPcC3BhAERFtfVXoNWvdlWBt3SM9slzFXdoGPND7o3E34qxm4ZLb39gAJZrerDHKs8FedadBUkucxh9HCtHJAgnTUNNdUe3zToUV6Eew4BBy25VtDXVD0WE5uLN9jJwPK0vH2DmTA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+  }
+  .cardRegister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 600px;
+    gap: 20px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    margin-right: 600px;
+    margin-bottom: 210px;
+  }
+  div.left-side {
+    background-image: none;
+    /* background-color: #212121; */
+  }
+  button.button {
+    position: absolute;
+    top: 0;
+    margin-top: 705px;
+    margin-left: 50px;
+  }
+  .left-side-title h3 {
+    display: none;
+  }
+  .left-side-signup h5 {
+    display: none;
+  }
+  .left-side-or h5 {
+    display: flex;
+    position: absolute;
+    top: 0;
+    margin-top: 655px;
+    margin-left: -100px;
   }
 }

@@ -14,7 +14,7 @@ const Categories = () => {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
       });
-      console.log(categories.data.data);
+      // console.log(categories.data.data);
       setCategoies(categories.data.data);
     } catch (error) {
       console.log(error);

@@ -105,6 +105,7 @@ const DashboardAdmin = () => {
 
   return (
     <>
+       <NavigationBar/>
 
       {/* <div id="test" style={{height: "100px", backgroundColor: "grey"}}>
         <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
@@ -122,7 +123,7 @@ const DashboardAdmin = () => {
       {/* next yang versi select */}
 
       <div className="dashboardWrapper">
-        <NavigationBar/>
+     
         <h3 className="JudulDashboard">DASHBOARD ADMIN</h3>
         <div>
           <Tabs id="fill-tab-example" className="mb-3" fill>

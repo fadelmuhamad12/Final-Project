@@ -57,7 +57,7 @@ const Banner = () => {
           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
         },
       });
-      console.log(banners.data.data);
+      // console.log(banners.data.data);
       setBanners(banners.data.data);
     } catch (error) {
       console.log(error);

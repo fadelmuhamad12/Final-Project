@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,16 +29,13 @@ const Register = () => {
       passwordRepeat: Yup.string()
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Password confirmation is required"),
+      role: Yup.string()
+        .oneOf(["user", "admin"], "Select Role")
+        .required("Required"),
       profilePictureUrl: Yup.string(),
       phoneNumber: Yup.string(),
     }),
     onSubmit: (values) => {
-      // const email = values.email;
-      // const name = values.name;
-      // const password = values.password;
-      // const passwordRepeat = values.passwordRepeat;
-      // const profilePictureUrl = values.profilePictureUrl;
-      // const phoneNumber = values.phoneNumber;
       axiosInstance
         .post(
           "/register",
@@ -83,7 +81,7 @@ const Register = () => {
         </div>
         <div className="left-side-button">
           <Link to="/home">
-          <button className="button"></button>
+            <button className="button"></button>
           </Link>
           <br />
         </div>
@@ -141,7 +139,7 @@ const Register = () => {
               />
               <span>Password Repeat</span>
             </div>
-            <div className="inputBox">
+            {/* <div className="inputBox">
               <input
                 id="role"
                 name="role"
@@ -152,7 +150,7 @@ const Register = () => {
                 required="required"
               />
               <span>Role</span>
-            </div>
+            </div> */}
             <div className="inputBox">
               <input
                 id="profilePictureUrl"
@@ -177,6 +175,21 @@ const Register = () => {
               />
               <span>Phone Number</span>
             </div>
+            <div className="inputBox">
+              <Form.Select
+                id="role"
+                name="role"
+                value={formik.values.role}
+                onChange={formik.handleChange}
+                type="text"
+                required="required"
+              >
+                <option select="true">Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+              </Form.Select>
+            </div>
+
             <button className="enter">Enter</button>
           </div>
         </form>

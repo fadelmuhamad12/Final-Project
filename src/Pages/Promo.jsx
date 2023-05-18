@@ -33,7 +33,7 @@ const Promo = () => {
         },
       });
       setPromos(promos.data.data);
-      console.log(promos.data.data);
+      // console.log(promos.data.data);
     } catch (error) {
       console.log(error);
     }
