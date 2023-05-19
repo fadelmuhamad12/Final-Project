@@ -96,7 +96,6 @@ const Register = () => {
                 id="email"
                 name="email"
                 value={formik.values.email}
-                // onChange={handleEmailChange}
                 onChange={formik.handleChange}
                 type="text"
                 required="required"
@@ -108,7 +107,6 @@ const Register = () => {
                 id="name"
                 name="name"
                 value={formik.values.name}
-                // onChange={handleNameChange}
                 onChange={formik.handleChange}
                 type="text"
                 required="required"
@@ -120,7 +118,6 @@ const Register = () => {
                 id="password"
                 name="password"
                 value={formik.values.password}
-                // onChange={handlePasswordChange}
                 onChange={formik.handleChange}
                 type="password"
                 required="required"
@@ -132,31 +129,17 @@ const Register = () => {
                 id="passwordRepeat"
                 name="passwordRepeat"
                 value={formik.values.passwordRepeat}
-                // onChange={handlePasswordRepeatChange}
                 onChange={formik.handleChange}
                 type="password"
                 required="required"
               />
               <span>Password Repeat</span>
             </div>
-            {/* <div className="inputBox">
-              <input
-                id="role"
-                name="role"
-                value={formik.values.role}
-                // onChange={handleRoleChange}
-                onChange={formik.handleChange}
-                type="text"
-                required="required"
-              />
-              <span>Role</span>
-            </div> */}
             <div className="inputBox">
               <input
                 id="profilePictureUrl"
                 name="profilePictureUrl"
                 value={formik.values.profilePictureUrl}
-                // onChange={handleProfilePictureUrlChange}
                 onChange={formik.handleChange}
                 type="text"
                 required="required"
@@ -168,7 +151,6 @@ const Register = () => {
                 id="phoneNumber"
                 name="phoneNumber"
                 value={formik.values.phoneNumber}
-                // onChange={handlePhoneNumberChange}
                 onChange={formik.handleChange}
                 type="text"
                 required="required"

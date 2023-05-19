@@ -27,7 +27,6 @@ const PromosAdmin = () => {
         apiKey: apiKeys,
       },
     });
-    console.log(promos.data.data);
     setPromos(promos.data.data);
   };
 

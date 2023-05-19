@@ -12,10 +12,9 @@ import axiosInstance from "../api/axios";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
+
 import { useNavigate } from "react-router-dom";
-import airplane from "../assets/airplane.jpg"
+import airplane from "../assets/airplane.jpg";
 
 const NavigationBar = () => {
   const apiKeys = "24405e01-fbc1-45a5-9f5a-be13afcd757c";
@@ -56,15 +55,14 @@ const NavigationBar = () => {
     setModal(false);
   };
 
-
-
   const fetchLoggedUser = async () => {
+    if (token) {
       const setLoggedUsers = await axiosInstance.get("/user", {
         headers: {
           apiKey: apiKeys,
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
       const userId = setLoggedUsers.data.data.id;
       localStorage.setItem("userId", JSON.stringify(userId));
       setUserId(setLoggedUsers.data.data.id);
@@ -74,8 +72,7 @@ const NavigationBar = () => {
       setPhoneNumber(setLoggedUsers.data.data.phoneNumber);
       setRole(setLoggedUsers.data.data.role);
       showModal();
-
-    
+    }
   };
 
   const updateProfile = () => {
@@ -90,18 +87,19 @@ const NavigationBar = () => {
         },
         {
           headers: {
-            apiKey: apiKeys,
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
             Authorization: `Bearer${token}`,
           },
         }
       )
       .then(() => {
+        fetchLoggedUser();
+        console.log(updateProfile);
         alert("Profile Updated!");
         window.location.reload();
-        fetchLoggedUser();
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        console.log("UPDATE FAILED!");
       });
   };
 
@@ -184,7 +182,8 @@ const NavigationBar = () => {
       >
         <Container fluid>
           <Navbar.Brand>
-            GO <span>.TRAVEL</span> <img src={airplane} alt="" style={{width: "40px"}}/>
+            GO <span>.TRAVEL</span>{" "}
+            <img src={airplane} alt="" style={{ width: "40px" }} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -339,7 +338,17 @@ const NavigationBar = () => {
           <Modal.Title>Edit Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={updateProfile}>
+          <Form.Group className="mb-3">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              id="username"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+          <Form>
             <Form.Group className="mb-3">
               <Form.Label>Email address:</Form.Label>
               <Form.Control
@@ -348,18 +357,6 @@ const NavigationBar = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                id="name"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
 
@@ -385,7 +382,11 @@ const NavigationBar = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => updateProfile()}
+            >
               Submit
             </Button>
           </Form>
