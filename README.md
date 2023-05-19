@@ -23,4 +23,4 @@ Go Travel is a travel website developed as a final project for the Dibimbing.id 
 
 
 # Website
-[Go.Travel] (gotraveldibimbing.netlify.app)
+[Go.Travel](gotraveldibimbing.netlify.app)
