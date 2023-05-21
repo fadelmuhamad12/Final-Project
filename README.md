@@ -24,3 +24,5 @@ Go Travel is a travel website developed as a final project for the Dibimbing.id 
 
 # Website
 [Go.Travel](https://gotraveldibimbing.netlify.app)
+*There's a bug on netifly when reload the page or login page is not Found
+*Trying to fixing but still not worked
